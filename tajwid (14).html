@@ -1,0 +1,1956 @@
+<!DOCTYPE html>
+<html lang="ru" dir="ltr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Муаллим Сани — Таджвид</title>
+<link href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400&family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+  /* Fallback fonts if Google Fonts unavailable (offline) */
+  @font-face {
+    font-family: 'Amiri';
+    src: local('Traditional Arabic'), local('Arabic Typesetting'), local('Arial Unicode MS');
+    font-display: swap;
+  }
+</style>
+<style>
+  :root {
+    --bg: #0D1B2A;
+    --bg2: #112236;
+    --bg3: #1a2f45;
+    --gold: #C9A84C;
+    --gold2: #e8c46a;
+    --green: #4CAF8C;
+    --red: #e05c5c;
+    --text: #e8e8f0;
+    --text2: #8899aa;
+    --card: #162535;
+    --card2: #1e3248;
+    --border: rgba(201,168,76,0.2);
+    --shadow: 0 8px 32px rgba(0,0,0,0.4);
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { height: 100%; }
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Nunito', sans-serif;
+    overflow-x: hidden;
+  }
+
+  /* Stars background */
+  .stars {
+    position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+    pointer-events: none; z-index: 0; overflow: hidden;
+  }
+  .star {
+    position: absolute; background: white; border-radius: 50%;
+    animation: twinkle var(--d, 3s) ease-in-out infinite;
+    opacity: 0;
+  }
+  @keyframes twinkle {
+    0%, 100% { opacity: 0; transform: scale(0.5); }
+    50% { opacity: var(--o, 0.8); transform: scale(1); }
+  }
+
+  /* Islamic pattern overlay */
+  .pattern-overlay {
+    position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+    pointer-events: none; z-index: 0;
+    background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23C9A84C' fill-opacity='0.03'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+  }
+
+  /* Header */
+  header {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    background: rgba(13,27,42,0.95);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+    padding: 0 20px;
+    height: 64px;
+    display: flex; align-items: center; justify-content: space-between;
+  }
+  .logo {
+    display: flex; align-items: center; gap: 10px;
+    font-size: 1.2rem; font-weight: 900; color: var(--gold);
+    text-decoration: none;
+  }
+  .logo-icon {
+    width: 36px; height: 36px;
+    background: linear-gradient(135deg, var(--gold), var(--gold2));
+    border-radius: 10px;
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'Amiri', serif; font-size: 1.1rem; color: var(--bg);
+  }
+  nav { display: flex; gap: 4px; }
+  nav button {
+    background: none; border: none; color: var(--text2);
+    padding: 8px 14px; border-radius: 8px;
+    font-family: 'Nunito', sans-serif; font-size: 0.85rem; font-weight: 700;
+    cursor: pointer; transition: all 0.2s;
+  }
+  nav button:hover, nav button.active {
+    background: var(--bg3); color: var(--gold);
+  }
+  .streak-badge {
+    display: flex; align-items: center; gap: 6px;
+    background: var(--bg3); border: 1px solid var(--border);
+    padding: 6px 12px; border-radius: 20px;
+    font-size: 0.85rem; font-weight: 800; color: var(--gold);
+  }
+
+  /* Pages */
+  .page { display: none; padding-top: 80px; min-height: 100vh; position: relative; z-index: 1; }
+  .page.active { display: block; }
+
+  /* HOME PAGE */
+  .home-hero {
+    text-align: center; padding: 30px 20px 20px;
+  }
+  .arabic-title {
+    font-family: 'Amiri', serif;
+    font-size: clamp(2.5rem, 8vw, 5rem);
+    color: var(--gold);
+    line-height: 1.4;
+    animation: fadeDown 0.8s ease both;
+  }
+  .home-subtitle {
+    font-size: 1rem; color: var(--text2); margin-top: 8px;
+    animation: fadeDown 0.8s 0.1s ease both;
+  }
+  @keyframes fadeDown {
+    from { opacity: 0; transform: translateY(-20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .progress-section {
+    max-width: 600px; margin: 0 auto 20px;
+    padding: 0 20px;
+  }
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  .progress-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 20px; padding: 20px;
+    margin-bottom: 16px;
+  }
+  .progress-label {
+    font-size: 0.8rem; font-weight: 700; color: var(--text2);
+    text-transform: uppercase; letter-spacing: 1px; margin-bottom: 12px;
+  }
+  .progress-bar-wrap {
+    background: var(--bg3); border-radius: 100px; height: 12px; overflow: hidden;
+  }
+  .progress-bar-fill {
+    height: 100%; border-radius: 100px;
+    background: linear-gradient(90deg, var(--green), #6ee7c0);
+    transition: width 0.8s ease;
+  }
+  .progress-stats {
+    display: flex; justify-content: space-between; margin-top: 8px;
+    font-size: 0.85rem; color: var(--text2);
+  }
+  .progress-stats span { font-weight: 800; color: var(--text); }
+
+  /* Misbaha (prayer beads) */
+  .misbaha-wrap {
+    display: flex; flex-wrap: wrap; gap: 6px;
+    justify-content: center; margin: 16px 0;
+  }
+  .bead {
+    width: 14px; height: 14px; border-radius: 50%;
+    background: var(--bg3); border: 2px solid var(--border);
+    transition: all 0.3s;
+  }
+  .bead.done {
+    background: var(--gold);
+    border-color: var(--gold);
+    box-shadow: 0 0 8px rgba(201,168,76,0.5);
+  }
+
+  .stats-row {
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px;
+    max-width: 600px; margin: 0 auto 20px; padding: 0 20px;
+  }
+  .stat-card {
+    background: var(--card); border: 1px solid var(--border);
+    border-radius: 16px; padding: 16px; text-align: center;
+  }
+  .stat-num {
+    font-size: 2rem; font-weight: 900; color: var(--gold); line-height: 1;
+  }
+  .stat-lbl { font-size: 0.75rem; color: var(--text2); margin-top: 4px; font-weight: 700; }
+
+  .start-btn {
+    display: block; width: calc(100% - 40px); max-width: 400px;
+    margin: 0 auto 40px;
+    padding: 18px; border-radius: 16px; border: none;
+    background: linear-gradient(135deg, var(--gold), var(--gold2));
+    color: var(--bg); font-family: 'Nunito', sans-serif;
+    font-size: 1.1rem; font-weight: 900; cursor: pointer;
+    transition: transform 0.2s, box-shadow 0.2s;
+    box-shadow: 0 4px 24px rgba(201,168,76,0.3);
+  }
+  .start-btn:hover { transform: translateY(-2px); box-shadow: 0 8px 32px rgba(201,168,76,0.4); }
+  .start-btn:active { transform: translateY(0); }
+
+  /* ALPHABET PAGE */
+  .page-header {
+    text-align: center; padding: 20px 20px 0;
+  }
+  .page-title {
+    font-size: 1.8rem; font-weight: 900; color: var(--text);
+  }
+  .page-title span { color: var(--gold); }
+  .page-desc { color: var(--text2); margin-top: 6px; font-size: 0.9rem; }
+
+  .letters-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+    gap: 12px; padding: 20px; max-width: 900px; margin: 0 auto;
+  }
+  .letter-card {
+    background: var(--card); border: 1px solid var(--border);
+    border-radius: 16px; padding: 16px; cursor: pointer;
+    transition: all 0.25s; text-align: center;
+    position: relative; overflow: hidden;
+  }
+  .letter-card:hover {
+    transform: translateY(-4px);
+    border-color: var(--gold);
+    box-shadow: 0 8px 24px rgba(201,168,76,0.2);
+  }
+  .letter-card.done {
+    border-color: var(--green);
+    background: linear-gradient(135deg, var(--card), rgba(76,175,140,0.1));
+  }
+  .letter-card.done::after {
+    content: '✓'; position: absolute; top: 8px; right: 8px;
+    background: var(--green); color: white; border-radius: 50%;
+    width: 20px; height: 20px; font-size: 11px; font-weight: 900;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .letter-arabic {
+    font-family: 'Amiri', serif; font-size: 3.8rem; color: var(--gold);
+    line-height: 1.3; display: block;
+    transition: transform 0.2s;
+  }
+  .letter-card:hover .letter-arabic { transform: scale(1.1); }
+  .letter-name { font-size: 0.9rem; font-weight: 800; color: var(--text); margin-top: 4px; }
+  .letter-translit { font-size: 0.78rem; color: var(--text2); }
+  .sound-btn {
+    margin-top: 8px; background: var(--bg3); border: 1px solid var(--border);
+    color: var(--gold); padding: 6px 14px; border-radius: 20px;
+    font-size: 0.75rem; font-weight: 700; cursor: pointer;
+    transition: all 0.2s; font-family: 'Nunito', sans-serif;
+  }
+  .sound-btn:hover { background: var(--gold); color: var(--bg); }
+  .sound-btn.playing { background: var(--gold); color: var(--bg); animation: pulse 0.5s ease infinite alternate; }
+  @keyframes pulse { from { transform: scale(1); } to { transform: scale(1.05); } }
+
+  /* Letter detail modal */
+  .modal-overlay {
+    display: none; position: fixed; inset: 0; z-index: 200;
+    background: rgba(0,0,0,0.7); backdrop-filter: blur(4px);
+    align-items: center; justify-content: center; padding: 20px;
+  }
+  .modal-overlay.open { display: flex; }
+  .modal {
+    background: var(--card); border: 1px solid var(--border);
+    border-radius: 24px; padding: 32px; max-width: 480px; width: 100%;
+    max-height: 90vh; overflow-y: auto;
+    animation: modalIn 0.3s ease;
+  }
+  @keyframes modalIn {
+    from { opacity: 0; transform: scale(0.9) translateY(20px); }
+    to { opacity: 1; transform: scale(1) translateY(0); }
+  }
+  .modal-letter {
+    font-family: 'Amiri', serif; font-size: 8rem; color: var(--gold);
+    text-align: center; line-height: 1; display: block;
+    text-shadow: 0 0 40px rgba(201,168,76,0.4);
+  }
+  .modal-name {
+    text-align: center; font-size: 1.4rem; font-weight: 900; margin-top: 8px;
+  }
+  .modal-translit {
+    text-align: center; color: var(--text2); font-size: 1rem; margin-top: 4px;
+  }
+  .vowels-section { margin-top: 24px; }
+  .vowels-title {
+    font-size: 0.75rem; font-weight: 700; color: var(--text2);
+    text-transform: uppercase; letter-spacing: 1px; margin-bottom: 12px;
+  }
+  .vowels-grid {
+    display: grid; grid-template-columns: repeat(5, 1fr); gap: 8px;
+  }
+  .vowel-btn {
+    background: var(--bg3); border: 1px solid var(--border);
+    border-radius: 10px; padding: 10px 4px; cursor: pointer;
+    text-align: center; transition: all 0.2s; font-family: 'Nunito', sans-serif;
+  }
+  .vowel-btn:hover { border-color: var(--gold); background: var(--card2); }
+  .vowel-btn.playing { border-color: var(--gold); background: var(--gold); }
+  .vowel-btn.playing .vowel-arabic,
+  .vowel-btn.playing .vowel-label,
+  .vowel-btn.playing .vowel-name { color: var(--bg) !important; }
+  .vowel-arabic {
+    font-family: 'Amiri', serif; font-size: 1.6rem; color: var(--gold); display: block;
+  }
+  .vowel-label { font-size: 0.65rem; color: var(--text2); font-weight: 700; margin-top: 2px; }
+  .vowel-name { font-size: 0.7rem; color: var(--text); font-weight: 800; }
+
+  .makhraj-section {
+    margin-top: 20px; background: var(--bg3); border-radius: 12px; padding: 16px;
+  }
+  .makhraj-title { font-size: 0.75rem; font-weight: 700; color: var(--text2); text-transform: uppercase; letter-spacing: 1px; }
+  .makhraj-text { font-size: 0.9rem; color: var(--text); margin-top: 6px; line-height: 1.5; }
+
+  .modal-actions {
+    display: flex; gap: 10px; margin-top: 24px;
+  }
+  .btn-secondary {
+    flex: 1; padding: 14px; border-radius: 12px; border: 1px solid var(--border);
+    background: var(--bg3); color: var(--text); font-family: 'Nunito', sans-serif;
+    font-size: 0.9rem; font-weight: 700; cursor: pointer; transition: all 0.2s;
+  }
+  .btn-secondary:hover { border-color: var(--gold); color: var(--gold); }
+  .btn-primary {
+    flex: 2; padding: 14px; border-radius: 12px; border: none;
+    background: linear-gradient(135deg, var(--green), #6ee7c0);
+    color: var(--bg); font-family: 'Nunito', sans-serif;
+    font-size: 0.9rem; font-weight: 900; cursor: pointer; transition: all 0.2s;
+  }
+  .btn-primary:hover { transform: translateY(-1px); box-shadow: 0 4px 16px rgba(76,175,140,0.4); }
+
+  /* PRACTICE PAGE */
+  .practice-container {
+    max-width: 500px; margin: 0 auto; padding: 20px;
+  }
+  .flashcard-wrap {
+    perspective: 1000px; height: 260px; cursor: pointer; margin-bottom: 24px;
+  }
+  .flashcard {
+    width: 100%; height: 100%; position: relative;
+    transform-style: preserve-3d; transition: transform 0.5s ease;
+  }
+  .flashcard.flipped { transform: rotateY(180deg); }
+  .card-face {
+    position: absolute; inset: 0; backface-visibility: hidden;
+    border-radius: 24px; display: flex; flex-direction: column;
+    align-items: center; justify-content: center; padding: 24px;
+    border: 1px solid var(--border);
+  }
+  .card-front {
+    background: var(--card);
+  }
+  .card-back {
+    background: linear-gradient(135deg, var(--bg3), var(--card2));
+    transform: rotateY(180deg);
+  }
+  .card-hint { font-size: 0.75rem; color: var(--text2); font-weight: 700; margin-bottom: 8px; }
+  .card-letter { font-family: 'Amiri', serif; font-size: 7rem; color: var(--gold); line-height: 1; }
+  .card-answer { font-size: 2rem; font-weight: 900; color: var(--text); }
+  .card-translit { font-size: 1rem; color: var(--text2); margin-top: 8px; }
+
+  .practice-actions { display: flex; gap: 12px; }
+  .btn-wrong {
+    flex: 1; padding: 16px; border-radius: 14px; border: 2px solid var(--red);
+    background: rgba(224,92,92,0.1); color: var(--red);
+    font-family: 'Nunito', sans-serif; font-size: 1rem; font-weight: 800;
+    cursor: pointer; transition: all 0.2s;
+  }
+  .btn-wrong:hover { background: rgba(224,92,92,0.2); }
+  .btn-right {
+    flex: 1; padding: 16px; border-radius: 14px; border: 2px solid var(--green);
+    background: rgba(76,175,140,0.1); color: var(--green);
+    font-family: 'Nunito', sans-serif; font-size: 1rem; font-weight: 800;
+    cursor: pointer; transition: all 0.2s;
+  }
+  .btn-right:hover { background: rgba(76,175,140,0.2); }
+
+  .practice-progress {
+    background: var(--card); border: 1px solid var(--border);
+    border-radius: 16px; padding: 16px; margin-bottom: 20px;
+    display: flex; gap: 16px; align-items: center;
+  }
+  .pbar-wrap { flex: 1; background: var(--bg3); border-radius: 100px; height: 8px; }
+  .pbar-fill { height: 100%; border-radius: 100px; background: linear-gradient(90deg, var(--gold), var(--gold2)); transition: width 0.4s; }
+  .pbar-text { font-size: 0.8rem; font-weight: 800; color: var(--gold); white-space: nowrap; }
+
+  /* TEST PAGE */
+  .test-container { max-width: 500px; margin: 0 auto; padding: 20px; }
+  .test-question {
+    background: var(--card); border: 1px solid var(--border);
+    border-radius: 20px; padding: 32px; text-align: center; margin-bottom: 20px;
+  }
+  .test-word { font-family: 'Amiri', serif; font-size: 4rem; color: var(--gold); line-height: 1.2; }
+  .test-prompt { font-size: 0.85rem; color: var(--text2); margin-top: 8px; font-weight: 700; }
+  .test-options { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 20px; }
+  .test-option {
+    background: var(--card); border: 2px solid var(--border);
+    border-radius: 14px; padding: 16px; font-family: 'Amiri', serif;
+    font-size: 2rem; color: var(--gold); cursor: pointer; transition: all 0.2s;
+    text-align: center;
+  }
+  .test-option:hover { border-color: var(--gold); transform: translateY(-2px); }
+  .test-option.correct { border-color: var(--green); background: rgba(76,175,140,0.15); color: var(--green); }
+  .test-option.wrong { border-color: var(--red); background: rgba(224,92,92,0.15); color: var(--red); }
+  .test-score-bar {
+    background: var(--card); border: 1px solid var(--border);
+    border-radius: 16px; padding: 12px 16px; margin-bottom: 16px;
+    display: flex; justify-content: space-between; align-items: center;
+  }
+  .test-score-num { font-size: 1.1rem; font-weight: 900; color: var(--gold); }
+  .test-score-lbl { font-size: 0.75rem; color: var(--text2); font-weight: 700; }
+
+  /* Toast - fixed properly */
+  .toast {
+    position: fixed;
+    bottom: 100px;
+    left: 50%;
+    transform: translateX(-50%) translateY(0);
+    background: linear-gradient(135deg, var(--gold), var(--gold2));
+    color: var(--bg);
+    padding: 14px 28px;
+    border-radius: 100px;
+    font-size: 1.1rem;
+    font-weight: 900;
+    z-index: 9999;
+    pointer-events: none;
+    white-space: nowrap;
+    box-shadow: 0 8px 32px rgba(201,168,76,0.5);
+    opacity: 0;
+    transition: opacity 0.3s ease, transform 0.3s ease;
+  }
+  .toast.show {
+    opacity: 1;
+    transform: translateX(-50%) translateY(-10px);
+  }
+
+  /* PRONUNCIATION CHECK */
+  .recite-container { max-width: 560px; margin: 0 auto; padding: 20px; }
+  .recite-card {
+    background: var(--card); border: 1px solid var(--border);
+    border-radius: 24px; padding: 28px; text-align: center; margin-bottom: 16px;
+  }
+  .recite-arabic {
+    font-family: 'Amiri', serif; font-size: 3rem; color: var(--gold);
+    line-height: 1.6; direction: rtl; margin: 16px 0;
+  }
+  .recite-translit { font-size: 1rem; color: var(--text2); margin-bottom: 8px; }
+  .recite-meaning { font-size: 0.85rem; color: var(--text2); font-style: italic; }
+  .mic-btn {
+    width: 80px; height: 80px; border-radius: 50%; border: 3px solid var(--gold);
+    background: rgba(201,168,76,0.1); color: var(--gold);
+    font-size: 2rem; cursor: pointer; transition: all 0.3s; margin: 20px auto; display: block;
+  }
+  .mic-btn:hover { background: rgba(201,168,76,0.2); transform: scale(1.05); }
+  .mic-btn.recording {
+    background: var(--red); border-color: var(--red); color: white;
+    animation: micPulse 1s ease-in-out infinite;
+  }
+  @keyframes micPulse {
+    0%, 100% { box-shadow: 0 0 0 0 rgba(224,92,92,0.4); }
+    50% { box-shadow: 0 0 0 20px rgba(224,92,92,0); }
+  }
+  .recite-status {
+    min-height: 28px; font-size: 0.9rem; color: var(--text2); font-weight: 700;
+    margin: 8px 0;
+  }
+  .recite-result {
+    background: var(--bg3); border-radius: 14px; padding: 14px 18px;
+    margin-top: 12px; display: none;
+  }
+  .recite-result.show { display: block; }
+  .recite-heard { font-size: 0.85rem; color: var(--text2); margin-bottom: 6px; }
+  .recite-score {
+    font-size: 1.6rem; font-weight: 900;
+  }
+  .recite-score.good { color: var(--green); }
+  .recite-score.ok { color: var(--gold); }
+  .recite-score.bad { color: var(--red); }
+  .recite-words { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 10px; justify-content: center; }
+  .recite-word {
+    font-family: 'Amiri', serif; font-size: 1.2rem;
+    padding: 4px 10px; border-radius: 8px;
+  }
+  .recite-word.match { background: rgba(76,175,140,0.2); color: var(--green); }
+  .recite-word.miss { background: rgba(224,92,92,0.2); color: var(--red); }
+  .recite-nav { display: flex; gap: 10px; margin-top: 16px; }
+  .no-speech-msg {
+    background: rgba(224,92,92,0.1); border: 1px solid rgba(224,92,92,0.3);
+    border-radius: 12px; padding: 14px; text-align: center;
+    font-size: 0.85rem; color: var(--text2); display: none;
+  }
+  .confetti-container {
+    position: fixed; inset: 0; pointer-events: none; z-index: 999; overflow: hidden;
+  }
+  .confetti-piece {
+    position: absolute; width: 10px; height: 10px;
+    top: -10px; border-radius: 2px;
+    animation: confettiFall 1.5s ease forwards;
+  }
+  @keyframes confettiFall {
+    to { transform: translateY(110vh) rotate(720deg); opacity: 0; }
+  }
+
+  /* Mobile nav */
+  .mobile-nav {
+    display: none; position: fixed; bottom: 0; left: 0; right: 0; z-index: 100;
+    background: rgba(13,27,42,0.95); backdrop-filter: blur(12px);
+    border-top: 1px solid var(--border);
+    padding: 8px 0 env(safe-area-inset-bottom);
+    display: flex; justify-content: space-around;
+  }
+  .mobile-nav-btn {
+    background: none; border: none; color: var(--text2);
+    padding: 8px 16px; border-radius: 10px;
+    font-family: 'Nunito', sans-serif; font-size: 0.7rem; font-weight: 700;
+    cursor: pointer; transition: all 0.2s;
+    display: flex; flex-direction: column; align-items: center; gap: 2px;
+  }
+  .mobile-nav-btn.active { color: var(--gold); }
+  .mobile-nav-btn span { font-size: 1.3rem; }
+
+  @media (max-width: 640px) {
+    nav { display: none; }
+    .mobile-nav { display: flex; }
+    .page { padding-bottom: 100px; }
+    .letter-arabic { font-size: 3rem; }
+    .letters-grid { grid-template-columns: repeat(3, 1fr); gap: 8px; padding: 12px; }
+    .stats-row { grid-template-columns: repeat(3, 1fr); }
+  }
+
+  /* Section divider */
+  .section-divider {
+    display: flex; align-items: center; gap: 16px;
+    padding: 0 20px; margin: 20px 0 8px;
+    max-width: 900px; margin-left: auto; margin-right: auto;
+  }
+  .divider-line { flex: 1; height: 1px; background: var(--border); }
+  .divider-text { font-size: 0.75rem; font-weight: 800; color: var(--gold); text-transform: uppercase; letter-spacing: 1px; }
+
+  .sound-status {
+    text-align: center; padding: 8px;
+    font-size: 0.8rem; color: var(--text2); font-weight: 700;
+  }
+  .sound-status.ok { color: var(--green); }
+  .sound-status.err { color: var(--red); }
+
+  /* RULES PAGE */
+  .rules-container { max-width: 760px; margin: 0 auto; padding: 20px 20px 100px; }
+  .rule-card {
+    background: var(--card); border: 1px solid var(--border);
+    border-radius: 20px; margin-bottom: 16px; overflow: hidden;
+    transition: border-color 0.2s;
+  }
+  .rule-card:hover { border-color: rgba(201,168,76,0.5); }
+  .rule-header {
+    display: flex; align-items: center; gap: 16px;
+    padding: 20px 24px; cursor: pointer; user-select: none;
+  }
+  .rule-icon {
+    width: 48px; height: 48px; border-radius: 14px; flex-shrink: 0;
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'Amiri', serif; font-size: 1.6rem;
+  }
+  .rule-title { font-size: 1.05rem; font-weight: 900; color: var(--text); }
+  .rule-subtitle { font-size: 0.8rem; color: var(--text2); margin-top: 2px; font-weight: 600; }
+  .rule-chevron { margin-left: auto; font-size: 1rem; color: var(--gold); transition: transform 0.3s; }
+  .rule-card.open .rule-chevron { transform: rotate(180deg); }
+  .rule-body { display: none; padding: 0 24px 24px; border-top: 1px solid var(--border); }
+  .rule-card.open .rule-body { display: block; }
+  .rule-arabic {
+    font-family: 'Amiri', serif; font-size: 2.2rem; color: var(--gold);
+    text-align: center; padding: 16px 0 8px; line-height: 1.6; direction: rtl;
+  }
+  .rule-desc { font-size: 0.9rem; color: var(--text2); line-height: 1.8; margin: 12px 0; }
+  .rule-examples { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 16px; }
+  .rule-example {
+    background: var(--bg3); border: 1px solid var(--border);
+    border-radius: 10px; padding: 10px 14px;
+    display: flex; flex-direction: column; align-items: center; gap: 4px;
+    cursor: pointer; transition: all 0.2s; min-width: 90px;
+  }
+  .rule-example:hover { border-color: var(--gold); background: var(--card2); }
+  .rule-example .ex-arabic { font-family: 'Amiri', serif; font-size: 1.6rem; color: var(--gold); }
+  .rule-example .ex-label { font-size: 0.7rem; color: var(--text2); font-weight: 700; }
+  .rule-tip {
+    background: rgba(201,168,76,0.08); border: 1px solid rgba(201,168,76,0.25);
+    border-radius: 12px; padding: 12px 16px; margin-top: 16px;
+    font-size: 0.85rem; color: var(--text); line-height: 1.7;
+  }
+  .rule-steps { margin: 12px 0; counter-reset: step; }
+  .rule-step {
+    display: flex; gap: 12px; margin-bottom: 10px; align-items: flex-start;
+  }
+  .step-num {
+    background: var(--gold); color: var(--bg);
+    width: 24px; height: 24px; border-radius: 50%; flex-shrink: 0;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 0.75rem; font-weight: 900; margin-top: 1px;
+  }
+  .step-text { font-size: 0.88rem; color: var(--text2); line-height: 1.6; }
+  .download-bar {
+    background: var(--card2); border: 1px solid var(--border);
+    border-radius: 16px; padding: 16px 20px; margin-bottom: 20px;
+    display: flex; align-items: center; gap: 16px; flex-wrap: wrap;
+  }
+  .download-bar-text { flex: 1; min-width: 200px; }
+  .download-bar-title { font-weight: 900; color: var(--text); font-size: 0.95rem; }
+  .download-bar-desc { font-size: 0.8rem; color: var(--text2); margin-top: 3px; }
+  .download-btn {
+    background: linear-gradient(135deg, var(--gold), var(--gold2));
+    color: var(--bg); padding: 10px 20px; border-radius: 10px; border: none;
+    font-family: 'Nunito', sans-serif; font-weight: 900; font-size: 0.85rem;
+    cursor: pointer; white-space: nowrap; text-decoration: none;
+    display: inline-block; transition: all 0.2s;
+  }
+  .download-btn:hover { transform: translateY(-1px); box-shadow: 0 4px 16px rgba(201,168,76,0.3); }
+  .test-option { padding: 12px 8px; min-height: 80px; justify-content: center; display: flex; flex-direction: column; align-items: center; }
+</style>
+</head>
+<body>
+
+<!-- Stars -->
+<div class="stars" id="stars"></div>
+<div class="pattern-overlay"></div>
+
+<!-- Header -->
+<header>
+  <a class="logo" href="#" onclick="showPage('home')" style="text-decoration:none">
+    <div class="logo-icon">م</div>
+  </a>
+  <nav id="desktop-nav">
+    <button onclick="showPage('home')" id="nav-home" class="active">Главная</button>
+    <button onclick="showPage('alphabet')" id="nav-alphabet">Алфавит</button>
+    <button onclick="showPage('practice')" id="nav-practice">Практика</button>
+    <button onclick="showPage('rules')" id="nav-rules">Правила</button>
+    <button onclick="showPage('test')" id="nav-test">Тест</button>
+    <button onclick="showPage('recite')" id="nav-recite">🎤 Чтение</button>
+  </nav>
+  <div class="streak-badge">🔥 <span id="streak-count">0</span> дней</div>
+</header>
+
+<!-- HOME PAGE -->
+<div class="page active" id="page-home">
+  <div class="home-hero">
+    <div class="arabic-title">بِسْمِ اللهِ</div>
+    <div class="home-subtitle">Учи таджвид каждый день — читай Коран красиво</div>
+  </div>
+
+  <div class="progress-section">
+    <div class="progress-card">
+      <div class="progress-label">Прогресс по буквам</div>
+      <div class="misbaha-wrap" id="misbaha"></div>
+      <div class="progress-bar-wrap">
+        <div class="progress-bar-fill" id="prog-bar" style="width:0%"></div>
+      </div>
+      <div class="progress-stats">
+        <div>Изучено: <span id="prog-done">0</span> из 28</div>
+        <div><span id="prog-pct">0</span>%</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="stats-row">
+    <div class="stat-card">
+      <div class="stat-num" id="stat-done">0</div>
+      <div class="stat-lbl">Букв</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-num" id="stat-streak">0</div>
+      <div class="stat-lbl">Дней подряд</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-num" id="stat-score">0</div>
+      <div class="stat-lbl">Очков</div>
+    </div>
+  </div>
+
+  <button class="start-btn" onclick="showPage('alphabet')">
+    📖 Начать обучение
+  </button>
+</div>
+
+<!-- ALPHABET PAGE -->
+<div class="page" id="page-alphabet">
+  <div class="page-header">
+    <div class="page-title">Арабский <span>алфавит</span></div>
+    <div class="page-desc">28 букв — нажми чтобы учить, 🔊 чтобы слушать</div>
+    <div class="sound-status" id="sound-status">⏳ Инициализация звука...</div>
+  </div>
+
+  <div class="section-divider">
+    <div class="divider-line"></div>
+    <div class="divider-text">Все буквы</div>
+    <div class="divider-line"></div>
+  </div>
+
+  <div class="letters-grid" id="letters-grid"></div>
+</div>
+
+<!-- PRACTICE PAGE -->
+<div class="page" id="page-practice">
+  <div class="practice-container">
+    <div class="page-header" style="padding:0 0 16px">
+      <div class="page-title">Практика <span>флэш-карточек</span></div>
+      <div class="page-desc">Нажми на карточку чтобы увидеть ответ</div>
+    </div>
+
+    <div class="practice-progress">
+      <div class="pbar-wrap"><div class="pbar-fill" id="practice-bar" style="width:0%"></div></div>
+      <div class="pbar-text"><span id="practice-idx">0</span>/<span id="practice-total">28</span></div>
+    </div>
+
+    <div class="flashcard-wrap" onclick="flipCard()">
+      <div class="flashcard" id="flashcard">
+        <div class="card-face card-front">
+          <div class="card-hint">Что это за буква?</div>
+          <div class="card-letter" id="fc-letter">ب</div>
+          <button class="sound-btn" onclick="event.stopPropagation(); speakLetter(currentLetter())" style="margin-top:16px">🔊 Слушать</button>
+        </div>
+        <div class="card-face card-back">
+          <div class="card-hint">Название буквы</div>
+          <div class="card-answer" id="fc-name">Ба</div>
+          <div class="card-translit" id="fc-translit">б</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="practice-actions">
+      <button class="btn-wrong" onclick="answerCard(false)">😕 Повторить</button>
+      <button class="btn-right" onclick="answerCard(true)">✅ Знаю!</button>
+    </div>
+  </div>
+</div>
+
+<!-- RULES PAGE -->
+<div class="page" id="page-rules">
+  <div class="rules-container">
+    <div class="page-header" style="padding:0 0 20px">
+      <div class="page-title">Правила <span>таджвида</span></div>
+      <div class="page-desc">По книге «Муаллим Сани» — Цей Рамадан, Майкоп 2005</div>
+    </div>
+
+    <div class="download-bar">
+      <div style="font-size:1.8rem">🔊</div>
+      <div class="download-bar-text">
+        <div class="download-bar-title">Нет звука арабских букв?</div>
+        <div class="download-bar-desc">Установи арабский язык в Windows для правильного произношения</div>
+      </div>
+      <a class="download-btn" href="ms-settings:regionlanguage" onclick="alert('Откроется: Параметры → Время и язык → Язык → Добавить язык → Арабский (Саудовская Аравия)')">
+        ⬇️ Скачать арабский
+      </a>
+    </div>
+
+    <!-- Rule 0: Что такое таджвид -->
+    <div class="rule-card" id="rule-0">
+      <div class="rule-header" onclick="toggleRule('rule-0')">
+        <div class="rule-icon" style="background:rgba(201,168,76,0.15)" >تجويد</div>
+        <div>
+          <div class="rule-title">Что такое Таджвид?</div>
+          <div class="rule-subtitle">Глава 1 — Основы науки таджвида</div>
+        </div>
+        <div class="rule-chevron">▼</div>
+      </div>
+      <div class="rule-body">
+        <div class="rule-arabic">وَرَتِّلِ الْقُرْآنَ تَرْتِيلًا</div>
+        <div class="rule-desc">«...и читай Коран размеренным чтением» (Сура 73, аят 4)</div>
+        <div class="rule-steps">
+          <div class="rule-step"><div class="step-num">В</div><div class="step-text"><strong>Что такое Таджвид?</strong> С точки зрения языковой характеристики, Таджвид — это украшение. По смыслу — чтение каждой буквы по соответствующим правилам: место артикуляции, атрибуты букв, носовой звук, длина, твёрдость и другие правила.</div></div>
+          <div class="rule-step"><div class="step-num">В</div><div class="step-text"><strong>Каков хукм Таджвида?</strong> Изучение науки Таджвида — фард кифая (коллективная обязанность). Применение его на практике — фард айн (личная обязанность) для каждого мусульманина.</div></div>
+          <div class="rule-step"><div class="step-num">В</div><div class="step-text"><strong>Какова польза?</strong> Оберегание языка от совершения ошибок при чтении Корана.</div></div>
+          <div class="rule-step"><div class="step-num">В</div><div class="step-text"><strong>Методы чтения:</strong> Тартиль (размеренное) — лучший; Хадр (быстрое с соблюдением правил); Тадвир (среднее); Тахкик (самое медленное — для обучения).</div></div>
+        </div>
+        <div class="rule-tip">Посланник Аллаха ﷺ сказал: «Лучшими из вас являются те, кто изучает Коран и учит ему других» (Аль-Бухари)</div>
+      </div>
+    </div>
+
+    <!-- Rule 0b: Условия чтения -->
+    <div class="rule-card" id="rule-0b">
+      <div class="rule-header" onclick="toggleRule('rule-0b')">
+        <div class="rule-icon" style="background:rgba(76,175,140,0.15)">شرط</div>
+        <div>
+          <div class="rule-title">Условия и этика чтения Корана</div>
+          <div class="rule-subtitle">6 условий правильного чтения</div>
+        </div>
+        <div class="rule-chevron">▼</div>
+      </div>
+      <div class="rule-body">
+        <div class="rule-steps">
+          <div class="rule-step"><div class="step-num">1</div><div class="step-text">Читающий должен находиться в состоянии ритуальной чистоты (тахарат). В состоянии осквернения читать нельзя.</div></div>
+          <div class="rule-step"><div class="step-num">2</div><div class="step-text">Нежелательно (макрух) читать без малого омовения (вуду), кроме маленьких детей.</div></div>
+          <div class="rule-step"><div class="step-num">3</div><div class="step-text">Чтение должно сопровождаться намерением только ради Аллаха.</div></div>
+          <div class="rule-step"><div class="step-num">4</div><div class="step-text">Читать нужно с размышлением о смысле и исполнением предписаний.</div></div>
+          <div class="rule-step"><div class="step-num">5</div><div class="step-text">Нежелательно разговаривать во время чтения до его завершения.</div></div>
+          <div class="rule-step"><div class="step-num">6</div><div class="step-text">Начало чтения: сначала Истиаза (اعوذ بالله), затем Басмала, затем сура.</div></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Rule 0c: Огласовки -->
+    <div class="rule-card" id="rule-0c">
+      <div class="rule-header" onclick="toggleRule('rule-0c')">
+        <div class="rule-icon" style="background:rgba(167,139,250,0.15)">حركات</div>
+        <div>
+          <div class="rule-title">Огласовки арабского языка</div>
+          <div class="rule-subtitle">6 огласовок: 3 кратких и 3 длинных</div>
+        </div>
+        <div class="rule-chevron">▼</div>
+      </div>
+      <div class="rule-body">
+        <div class="rule-arabic">فَ — فِ — فُ — فْ — فَّ — فً</div>
+        <div class="rule-steps">
+          <div class="rule-step"><div class="step-num">1</div><div class="step-text"><strong style="color:var(--gold)">Фатха (فَتْحَة) ـَ</strong> — знак над буквой, звук «А» или «Э». Пример: كَتَبَ</div></div>
+          <div class="rule-step"><div class="step-num">2</div><div class="step-text"><strong style="color:var(--gold)">Кясра (كَسْرَة) ـِ</strong> — знак под буквой, звук «И». Пример: كِتَاب</div></div>
+          <div class="rule-step"><div class="step-num">3</div><div class="step-text"><strong style="color:var(--gold)">Дамма (ضَمَّة) ـُ</strong> — знак в виде запятой, звук «У». Пример: كُتُب</div></div>
+          <div class="rule-step"><div class="step-num">4</div><div class="step-text"><strong style="color:var(--text2)">Сукун (سُكُون) ـْ</strong> — отсутствие гласного. Буква произносится как чистый согласный. Пример: مِنْ</div></div>
+          <div class="rule-step"><div class="step-num">5</div><div class="step-text"><strong style="color:var(--green)">Танвин (تنوين) ـً ـٍ ـٌ</strong> — двойная огласовка с добавлением «Н». Ан / Ин / Ун. Пример: كِتَابٌ</div></div>
+          <div class="rule-step"><div class="step-num">6</div><div class="step-text"><strong style="color:var(--red)">Шадда (شَدَّة) ـّ</strong> — удвоение буквы: первая с сукуном, вторая с огласовкой. Пример: رَبَّنَا</div></div>
+        </div>
+        <div class="rule-tip">Длинные гласные: Алиф (ا) = долгое «А», Вав (و) = долгое «У», Йа (ي) = долгое «И». Они произносятся примерно в 2 раза длиннее коротких.</div>
+      </div>
+    </div>
+
+    <!-- Rule 1: Нун Сакин / Танвин -->
+    <div class="rule-card" id="rule-1">
+      <div class="rule-header" onclick="toggleRule('rule-1')">
+        <div class="rule-icon" style="background:rgba(201,168,76,0.15)">نْ</div>
+        <div>
+          <div class="rule-title">Нун Сакин и Танвин</div>
+          <div class="rule-subtitle">Глава 2 — 4 правила произношения نْ</div>
+        </div>
+        <div class="rule-chevron">▼</div>
+      </div>
+      <div class="rule-body">
+        <div class="rule-arabic">نْ — ـً ـٍ ـٌ</div>
+        <div class="rule-desc">Нун Сакин — это нун (ن) без огласовки. Танвин — это двойная огласовка (две фатхи, два кясра, две даммы). У них 4 правила в зависимости от следующей буквы.</div>
+        <div class="rule-steps">
+          <div class="rule-step"><div class="step-num">1</div><div class="step-text"><strong style="color:var(--green)">Изхар — ясное чтение (إظهار):</strong> буквы горла ء ه ع ح غ خ — нун читается чётко, без носового звука. Запомни: «أخي هاك علما» — первые буквы этих слов.</div></div>
+          <div class="rule-step"><div class="step-num">2</div><div class="step-text"><strong style="color:var(--gold)">Идгам — ассимиляция (إدغام):</strong> буквы ي ر م ل و ن — нун сливается со следующей буквой. Делится на два вида: с гуннэй (ي و م ن) и без гуннэ (ر ل).</div></div>
+          <div class="rule-step"><div class="step-num">3</div><div class="step-text"><strong style="color:#a78bfa">Икляб — замена (إقلاب):</strong> только перед буквой ب — нун превращается в мим (م) с сохранением носового звука.</div></div>
+          <div class="rule-step"><div class="step-num">4</div><div class="step-text"><strong style="color:var(--red)">Ихфа — скрытое произношение (إخفاء):</strong> перед остальными 15 буквами — нун произносится скрыто, с носовым звуком между ясным и слитным.</div></div>
+        </div>
+        <div class="rule-examples">
+          <div class="rule-example" onclick="speakLetter('مِنْ عِلْمٍ')"><div class="ex-arabic">مِنْ عِلْمٍ</div><div class="ex-label">Изхар</div></div>
+          <div class="rule-example" onclick="speakLetter('مَنْ يَعْمَلْ')"><div class="ex-arabic">مَنْ يَعْمَلْ</div><div class="ex-label">Идгам</div></div>
+          <div class="rule-example" onclick="speakLetter('مِنْ بَعْدِ')"><div class="ex-arabic">مِنْ بَعْدِ</div><div class="ex-label">Икляб</div></div>
+          <div class="rule-example" onclick="speakLetter('مِنْ قَبْلِ')"><div class="ex-arabic">مِنْ قَبْلِ</div><div class="ex-label">Ихфа</div></div>
+        </div>
+        <div class="rule-tip">Исключения из Идгама: слова يَنْهَوْنَ، بُنْيَانٌ، صِنْوَانٌ، قِنْوَانٌ — несмотря на буквы идгама, нун читается ясно, т.к. они в одном слове.</div>
+      </div>
+    </div>
+
+    <!-- Rule 2: Мим Сакин -->
+    <div class="rule-card" id="rule-2">
+      <div class="rule-header" onclick="toggleRule('rule-2')">
+        <div class="rule-icon" style="background:rgba(76,175,140,0.15)">مْ</div>
+        <div>
+          <div class="rule-title">Мим Сакин</div>
+          <div class="rule-subtitle">3 правила произношения مْ</div>
+        </div>
+        <div class="rule-chevron">▼</div>
+      </div>
+      <div class="rule-body">
+        <div class="rule-arabic">مْ</div>
+        <div class="rule-desc">Мим сакин (мим без огласовки) имеет 3 правила в зависимости от следующей буквы.</div>
+        <div class="rule-steps">
+          <div class="rule-step"><div class="step-num">1</div><div class="step-text"><strong style="color:var(--red)">Ихфа шафави:</strong> перед буквой ب — мим читается скрыто с гуннэй</div></div>
+          <div class="rule-step"><div class="step-num">2</div><div class="step-text"><strong style="color:var(--gold)">Идгам мисляйн:</strong> перед буквой م — мим сливается с другим мимом</div></div>
+          <div class="rule-step"><div class="step-num">3</div><div class="step-text"><strong style="color:var(--green)">Изхар шафави:</strong> перед всеми остальными буквами — мим читается чётко</div></div>
+        </div>
+        <div class="rule-tip">Ихфа шафави — только перед буквой Ба. Губы смыкаются, но не резко — звук «м» немного тянется.</div>
+      </div>
+    </div>
+
+    <!-- Rule 3: Мадд -->
+    <div class="rule-card" id="rule-3">
+      <div class="rule-header" onclick="toggleRule('rule-3')">
+        <div class="rule-icon" style="background:rgba(167,139,250,0.15)">مَدّ</div>
+        <div>
+          <div class="rule-title">Мадд — Растяжение</div>
+          <div class="rule-subtitle">Как долго тянуть гласные звуки</div>
+        </div>
+        <div class="rule-chevron">▼</div>
+      </div>
+      <div class="rule-body">
+        <div class="rule-arabic">ا — و — ي</div>
+        <div class="rule-desc">Мадд — это удлинение гласных букв (Алиф, Вав, Йа). Длина измеряется в харакатах (счётных единицах).</div>
+        <div class="rule-steps">
+          <div class="rule-step"><div class="step-num">1</div><div class="step-text"><strong style="color:var(--gold)">Мадд Табии (естественный):</strong> 2 харакат — нет хамзы или сукуна после буквы</div></div>
+          <div class="rule-step"><div class="step-num">2</div><div class="step-text"><strong style="color:var(--green)">Мадд Мутасиль (связный):</strong> 4-5 харакат — буква мадда и хамза в одном слове</div></div>
+          <div class="rule-step"><div class="step-num">3</div><div class="step-text"><strong style="color:#f97316">Мадд Мунфасиль (разрывный):</strong> 4-5 харакат — буква мадда в конце слова, хамза в начале следующего</div></div>
+          <div class="rule-step"><div class="step-num">4</div><div class="step-text"><strong style="color:var(--red)">Мадд Лязим (обязательный):</strong> 6 харакат — перед буквой с ташдидом или сукуном при остановке</div></div>
+        </div>
+        <div class="rule-examples">
+          <div class="rule-example" onclick="speakLetter('قَالَ')"><div class="ex-arabic">قَالَ</div><div class="ex-label">Табии (2)</div></div>
+          <div class="rule-example" onclick="speakLetter('جَاءَ')"><div class="ex-arabic">جَاءَ</div><div class="ex-label">Мутасиль (5)</div></div>
+          <div class="rule-example" onclick="speakLetter('الضَّالِّينَ')"><div class="ex-arabic">الضَّالِّينَ</div><div class="ex-label">Лязим (6)</div></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Rule 4: Шадда / Гунна -->
+    <div class="rule-card" id="rule-4">
+      <div class="rule-header" onclick="toggleRule('rule-4')">
+        <div class="rule-icon" style="background:rgba(249,115,22,0.15)">غُنَّة</div>
+        <div>
+          <div class="rule-title">Гуннэ — Носовой звук</div>
+          <div class="rule-subtitle">Назализация букв Нун и Мим</div>
+        </div>
+        <div class="rule-chevron">▼</div>
+      </div>
+      <div class="rule-body">
+        <div class="rule-arabic">نّ — مّ</div>
+        <div class="rule-desc">Гуннэ — это носовой звук, который исходит из носа при произношении букв Нун (ن) и Мим (م) с ташдидом или в определённых ситуациях.</div>
+        <div class="rule-steps">
+          <div class="rule-step"><div class="step-num">1</div><div class="step-text">Закрой рот и произнеси «ммм» через нос — это и есть гуннэ</div></div>
+          <div class="rule-step"><div class="step-num">2</div><div class="step-text">Длина гуннэ — 2 харакат (счётные единицы)</div></div>
+          <div class="rule-step"><div class="step-num">3</div><div class="step-text">Гуннэ обязательна при Ихфа, Идгам с гуннэй, и при ташдиде на нун/мим</div></div>
+        </div>
+        <div class="rule-tip">Положи палец на нос и почувствуй вибрацию — это проверка гуннэ. Вибрирует нос = гуннэ правильная!</div>
+      </div>
+    </div>
+
+    <!-- Rule 5: Тафхим / Таркик -->
+    <div class="rule-card" id="rule-5">
+      <div class="rule-header" onclick="toggleRule('rule-5')">
+        <div class="rule-icon" style="background:rgba(201,168,76,0.15)">ر</div>
+        <div>
+          <div class="rule-title">Тафхим и Таркик</div>
+          <div class="rule-subtitle">Тяжёлые и лёгкие буквы</div>
+        </div>
+        <div class="rule-chevron">▼</div>
+      </div>
+      <div class="rule-body">
+        <div class="rule-arabic">خص ضغط قظ</div>
+        <div class="rule-desc">В арабском языке буквы делятся на «тяжёлые» (тафхим — произносятся с поднятым задом языка) и «лёгкие» (таркик).</div>
+        <div class="rule-steps">
+          <div class="rule-step"><div class="step-num">1</div><div class="step-text"><strong style="color:var(--red)">Тяжёлые буквы (7):</strong> خ ص ض غ ط ق ظ — всегда произносятся «тяжело»</div></div>
+          <div class="rule-step"><div class="step-num">2</div><div class="step-text"><strong style="color:var(--gold)">Буква Ра (ر):</strong> иногда тяжёлая, иногда лёгкая — зависит от огласовки</div></div>
+          <div class="rule-step"><div class="step-num">3</div><div class="step-text"><strong style="color:var(--green)">Буква Лям (ل) в «Аллах»:</strong> тяжёлая после фатхи и даммы, лёгкая после касры</div></div>
+        </div>
+        <div class="rule-examples">
+          <div class="rule-example" onclick="speakLetter('اللَّهُ')"><div class="ex-arabic">اللَّهُ</div><div class="ex-label">Тяжёлый Лям</div></div>
+          <div class="rule-example" onclick="speakLetter('بِاللَّهِ')"><div class="ex-arabic">بِاللَّهِ</div><div class="ex-label">Лёгкий Лям</div></div>
+          <div class="rule-example" onclick="speakLetter('رَبِّ')"><div class="ex-arabic">رَبِّ</div><div class="ex-label">Тяжёлая Ра</div></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Rule 6: Вакф - Остановка -->
+    <div class="rule-card" id="rule-6">
+      <div class="rule-header" onclick="toggleRule('rule-6')">
+        <div class="rule-icon" style="background:rgba(76,175,140,0.15)">وقف</div>
+        <div>
+          <div class="rule-title">Вакф — Правила остановки</div>
+          <div class="rule-subtitle">Где останавливаться при чтении</div>
+        </div>
+        <div class="rule-chevron">▼</div>
+      </div>
+      <div class="rule-body">
+        <div class="rule-arabic">ۖ ۗ ۘ ۙ ۚ</div>
+        <div class="rule-desc">Вакф — остановка при чтении Корана. Знаки над текстом указывают где можно и нельзя останавливаться.</div>
+        <div class="rule-steps">
+          <div class="rule-step"><div class="step-num">1</div><div class="step-text"><strong style="color:var(--green)">م (Лязим):</strong> обязательная остановка</div></div>
+          <div class="rule-step"><div class="step-num">2</div><div class="step-text"><strong style="color:var(--gold)">ج (Джаиз):</strong> остановка разрешена</div></div>
+          <div class="rule-step"><div class="step-num">3</div><div class="step-text"><strong style="color:var(--red)">لا (Ля):</strong> нельзя останавливаться</div></div>
+          <div class="rule-step"><div class="step-num">4</div><div class="step-text"><strong style="color:var(--text2)">ص (Мурахас):</strong> лучше не останавливаться, но можно</div></div>
+          <div class="rule-step"><div class="step-num">5</div><div class="step-text"><strong style="color:#a78bfa">∴ или ∵ (Муанака):</strong> два знака — остановись только на одном из них</div></div>
+        </div>
+        <div class="rule-tip">При остановке последняя буква слова читается с сукуном (без огласовки) — это обязательное правило!</div>
+      </div>
+    </div>
+
+    <!-- Rule 7: Хамзат аль-Васль -->
+    <div class="rule-card" id="rule-7">
+      <div class="rule-header" onclick="toggleRule('rule-7')">
+        <div class="rule-icon" style="background:rgba(167,139,250,0.15)">ٱ</div>
+        <div>
+          <div class="rule-title">Хамзат аль-Васль</div>
+          <div class="rule-subtitle">Соединительная хамза «ال»</div>
+        </div>
+        <div class="rule-chevron">▼</div>
+      </div>
+      <div class="rule-body">
+        <div class="rule-arabic">ٱلْ — اَلْ</div>
+        <div class="rule-desc">Артикль «аль» (ال) имеет особые правила: лунные буквы читаются с «Л», солнечные — «Л» сливается со следующей буквой.</div>
+        <div class="rule-steps">
+          <div class="rule-step"><div class="step-num">1</div><div class="step-text"><strong style="color:var(--gold)">Солнечные буквы (14):</strong> ت ث د ذ ر ز س ش ص ض ط ظ ل ن — «Л» сливается, буква удваивается</div></div>
+          <div class="rule-step"><div class="step-num">2</div><div class="step-text"><strong style="color:var(--green)">Лунные буквы (14):</strong> ا ب ج ح خ ع غ ف ق ك م ه و ي — «Л» читается чётко</div></div>
+        </div>
+        <div class="rule-examples">
+          <div class="rule-example" onclick="speakLetter('الشَّمْسُ')"><div class="ex-arabic">الشَّمْسُ</div><div class="ex-label">Солнечная</div></div>
+          <div class="rule-example" onclick="speakLetter('الْقَمَرُ')"><div class="ex-arabic">الْقَمَرُ</div><div class="ex-label">Лунная</div></div>
+        </div>
+        <div class="rule-tip">Запомни солнечные буквы: طِبْ ثُمَّ صِلْ رَحِمًا تَفُزْ ضِفْ ذَا نِعَمْ — каждая буква этой фразы является солнечной!</div>
+      </div>
+    </div>
+
+    <!-- Rule 8: Идгам -->
+    <div class="rule-card" id="rule-8">
+      <div class="rule-header" onclick="toggleRule('rule-8')">
+        <div class="rule-icon" style="background:rgba(249,115,22,0.15)">إدغام</div>
+        <div>
+          <div class="rule-title">Идгам — Слияние букв</div>
+          <div class="rule-subtitle">Когда две буквы сливаются в одну</div>
+        </div>
+        <div class="rule-chevron">▼</div>
+      </div>
+      <div class="rule-body">
+        <div class="rule-arabic">مِن رَّبِّكَ</div>
+        <div class="rule-desc">Идгам — это слияние двух одинаковых или похожих букв. Первая буква «входит» во вторую и читается с ташдидом.</div>
+        <div class="rule-steps">
+          <div class="rule-step"><div class="step-num">1</div><div class="step-text"><strong style="color:var(--gold)">Идгам мислейн:</strong> две одинаковые буквы — первая поглощается второй</div></div>
+          <div class="rule-step"><div class="step-num">2</div><div class="step-text"><strong style="color:var(--green)">Идгам мутакарибейн:</strong> близкие по месту буквы — например قْ + ك или بْ + م</div></div>
+          <div class="rule-step"><div class="step-num">3</div><div class="step-text"><strong style="color:var(--red)">Идгам мутаджанисейн:</strong> одинаковое место, разные свойства — например تْ + ط</div></div>
+        </div>
+        <div class="rule-tip">При идгаме не нужно останавливаться между словами — переходи плавно, усиливая вторую букву.</div>
+      </div>
+    </div>
+
+    <!-- Rule 9: Истиаза и Басмала -->
+    <div class="rule-card" id="rule-9">
+      <div class="rule-header" onclick="toggleRule('rule-9')">
+        <div class="rule-icon" style="background:rgba(201,168,76,0.15)">بسم</div>
+        <div>
+          <div class="rule-title">Истиаза и Басмала</div>
+          <div class="rule-subtitle">Начало чтения — по книге Муаллим Сани</div>
+        </div>
+        <div class="rule-chevron">▼</div>
+      </div>
+      <div class="rule-body">
+        <div class="rule-arabic">أَعُوذُ بِاللَّهِ مِنَ الشَّيْطَانِ الرَّجِيمِ</div>
+        <div class="rule-desc">Аль-Истиаза — прибегание к защите Аллаха от шайтана перед чтением Корана. Это желательно (мустахаб) в начале суры или в середине чтения.</div>
+        <div class="rule-steps">
+          <div class="rule-step"><div class="step-num">1</div><div class="step-text"><strong style="color:var(--gold)">Вслух</strong> произносится: в собрании людей при обучении — чтобы предостеречь от разговоров.</div></div>
+          <div class="rule-step"><div class="step-num">2</div><div class="step-text"><strong style="color:var(--text2)">Про себя</strong> произносится: при чтении в намазе и когда продолжаешь чтение в группе.</div></div>
+        </div>
+        <div class="rule-arabic" style="font-size:1.4rem">بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ</div>
+        <div class="rule-desc" style="margin-top:12px">Аль-Басмала является частью аята суры Ан-Намль. Читается в начале каждой суры, <strong>кроме суры Ат-Тауба (9-я сура).</strong></div>
+        <div class="rule-steps">
+          <div class="rule-step"><div class="step-num">1</div><div class="step-text">Истиаза → остановка → Басмала → остановка → сура</div></div>
+          <div class="rule-step"><div class="step-num">2</div><div class="step-text">Истиаза → остановка → Басмала + начало суры (без остановки)</div></div>
+          <div class="rule-step"><div class="step-num">3</div><div class="step-text">Истиаза + Басмала (без остановки) → остановка → сура</div></div>
+          <div class="rule-step"><div class="step-num">4</div><div class="step-text">Истиаза + Басмала + сура (всё без остановок) — тоже допустимо</div></div>
+        </div>
+        <div class="rule-examples">
+          <div class="rule-example" onclick="speakLetter('أَعُوذُ بِاللَّهِ مِنَ الشَّيْطَانِ الرَّجِيمِ')">
+            <div class="ex-arabic" style="font-size:0.9rem">أعوذ بالله</div><div class="ex-label">Истиаза</div>
+          </div>
+          <div class="rule-example" onclick="speakLetter('بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ')">
+            <div class="ex-arabic" style="font-size:0.9rem">بسم الله</div><div class="ex-label">Басмала</div>
+          </div>
+        </div>
+        <div class="rule-tip">Нельзя заканчивать первую суру Басмалой и начинать вторую без неё — Басмала открывает, а не завершает чтение.</div>
+      </div>
+    </div>
+
+    <!-- Rule 10: Суммary -->
+    <div class="rule-card" id="rule-10">
+      <div class="rule-header" onclick="toggleRule('rule-10')">
+        <div class="rule-icon" style="background:rgba(76,175,140,0.15)">✓</div>
+        <div>
+          <div class="rule-title">Путь к правильному чтению</div>
+          <div class="rule-subtitle">Пошаговый план обучения</div>
+        </div>
+        <div class="rule-chevron">▼</div>
+      </div>
+      <div class="rule-body">
+        <div class="rule-desc">Следуй этому плану и через 3-6 месяцев ты сможешь читать Коран правильно:</div>
+        <div class="rule-steps">
+          <div class="rule-step"><div class="step-num">1</div><div class="step-text"><strong style="color:var(--gold)">Неделя 1-2:</strong> Выучи все 28 букв и их произношение (используй страницу «Буквы»)</div></div>
+          <div class="rule-step"><div class="step-num">2</div><div class="step-text"><strong style="color:var(--gold)">Неделя 3-4:</strong> Изучи огласовки (фатха, касра, дамма, сукун, ташдид)</div></div>
+          <div class="rule-step"><div class="step-num">3</div><div class="step-text"><strong style="color:var(--green)">Месяц 2:</strong> Правила нун сакин, мим сакин, гуннэ</div></div>
+          <div class="rule-step"><div class="step-num">4</div><div class="step-text"><strong style="color:var(--green)">Месяц 3:</strong> Мадд (растяжение), тафхим/таркик (тяжёлые/лёгкие)</div></div>
+          <div class="rule-step"><div class="step-num">5</div><div class="step-text"><strong style="color:#a78bfa">Месяц 4-6:</strong> Правила вакф, идгам, солнечные/лунные буквы</div></div>
+          <div class="rule-step"><div class="step-num">6</div><div class="step-text"><strong style="color:var(--text)">Постоянно:</strong> Слушай опытных чтецов (Аль-Хусари, Мухаммад Айюб, Аль-Афаси)</div></div>
+        </div>
+        <div class="rule-tip">Таджвид — это практика! 15 минут ежедневного чтения вслух дают лучший результат, чем 2 часа раз в неделю.</div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- TEST PAGE -->
+<div class="page" id="page-test">
+  <div class="test-container">
+    <div class="page-header" style="padding:0 0 16px">
+      <div class="page-title">Тест <span>«Угадай букву»</span></div>
+      <div class="page-desc">Выбери правильное название</div>
+    </div>
+
+    <div class="test-score-bar">
+      <div><div class="test-score-lbl">Вопрос</div><div class="test-score-num"><span id="test-q-num">1</span>/10</div></div>
+      <div style="flex:1;padding:0 16px"><div class="pbar-wrap"><div class="pbar-fill" id="test-bar" style="width:0%"></div></div></div>
+      <div><div class="test-score-lbl">Счёт</div><div class="test-score-num" id="test-score">0</div></div>
+    </div>
+
+    <div class="test-question">
+      <div class="test-word" id="test-letter">ب</div>
+      <div class="test-prompt">Как называется эта буква?</div>
+      <button class="sound-btn" style="margin:10px auto;display:block;font-size:0.8rem;padding:6px 18px" onclick="speakLetter(document.getElementById('test-letter').textContent)">
+        🔊 Повторить звук
+      </button>
+    </div>
+
+    <div class="test-options" id="test-options"></div>
+  </div>
+</div>
+
+<!-- Modal -->
+<div class="modal-overlay" id="modal" onclick="closeModal(event)">
+  <div class="modal">
+    <span class="modal-letter" id="modal-letter">ب</span>
+    <div class="modal-name" id="modal-name">Ба</div>
+    <div class="modal-translit" id="modal-translit">б</div>
+
+    <button class="sound-btn" style="margin:16px auto;display:block;padding:10px 24px;font-size:0.9rem" onclick="speakArabic(modalCurrentLetter)">
+      🔊 Произнести
+    </button>
+
+    <div class="vowels-section">
+      <div class="vowels-title">Огласовки</div>
+      <div class="vowels-grid" id="modal-vowels"></div>
+    </div>
+
+    <div class="makhraj-section">
+      <div class="makhraj-title">Махрадж (место произношения)</div>
+      <div class="makhraj-text" id="modal-makhraj"></div>
+    </div>
+
+    <div class="modal-actions">
+      <button class="btn-secondary" onclick="document.getElementById('modal').classList.remove('open')">Закрыть</button>
+      <button class="btn-primary" id="modal-done-btn" onclick="markLetterDone()">✓ Знаю букву!</button>
+    </div>
+  </div>
+</div>
+
+<!-- RECITE PAGE - pronunciation check -->
+<div class="page" id="page-recite">
+  <div class="recite-container">
+    <div class="page-header" style="padding:0 0 16px">
+      <div class="page-title">Чтение <span>с проверкой</span></div>
+      <div class="page-desc">Читай вслух — система сравнит с оригиналом</div>
+    </div>
+
+    <div class="no-speech-msg" id="no-speech-msg" style="display:none">
+      ❌ Твой браузер не поддерживает распознавание речи.<br>
+      Используй <strong>Chrome</strong> на компьютере или Android, или <strong>Safari</strong> на iPhone.
+    </div>
+
+    <div class="recite-card">
+      <div style="font-size:0.75rem;font-weight:800;color:var(--text2);text-transform:uppercase;letter-spacing:1px">Прочитай вслух</div>
+      <div class="recite-arabic" id="recite-arabic">بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ</div>
+      <div class="recite-translit" id="recite-translit">Бисмиллахир-рахманир-рахим</div>
+      <div class="recite-meaning" id="recite-meaning">Во имя Аллаха, Милостивого, Милосердного</div>
+
+      <button class="sound-btn" style="margin:12px auto;display:block" onclick="playReciteAudio()">
+        🔊 Послушать (Аль-Афаси)
+      </button>
+
+      <button class="mic-btn" id="mic-btn" onclick="toggleRecording()">🎤</button>
+      <div class="recite-status" id="recite-status">Нажми микрофон и читай</div>
+
+      <div class="recite-result" id="recite-result">
+        <div class="recite-heard">Распознано: <span id="recite-heard-text" style="color:var(--text);font-weight:700"></span></div>
+        <div class="recite-score" id="recite-score-text"></div>
+        <div class="recite-words" id="recite-words"></div>
+      </div>
+    </div>
+
+    <div class="recite-nav">
+      <button class="btn-secondary" onclick="prevRecite()">← Назад</button>
+      <div style="flex:1;text-align:center;font-size:0.85rem;color:var(--text2);font-weight:700;align-self:center">
+        <span id="recite-idx-num">1</span> / <span id="recite-total-num">10</span>
+      </div>
+      <button class="btn-primary" onclick="nextRecite()">Вперёд →</button>
+    </div>
+
+    <div style="background:var(--card);border:1px solid var(--border);border-radius:16px;padding:16px;margin-top:8px">
+      <div style="font-size:0.8rem;font-weight:800;color:var(--gold);margin-bottom:8px">💡 Как это работает</div>
+      <div style="font-size:0.82rem;color:var(--text2);line-height:1.7">
+        Микрофон слушает твоё чтение и сравнивает с правильным текстом. Зелёные слова = правильно, красные = нужно повторить. Точность зависит от наличия арабского языка в твоём устройстве.
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Confetti container -->
+<div class="confetti-container" id="confetti"></div>
+
+<!-- Toast -->
+<div class="toast" id="toast">🌟 Машааллах!</div>
+
+<!-- Mobile nav -->
+<div class="mobile-nav">
+  <button class="mobile-nav-btn active" id="mnav-home" onclick="showPage('home')"><span>🏠</span>Главная</button>
+  <button class="mobile-nav-btn" id="mnav-alphabet" onclick="showPage('alphabet')"><span>ا</span>Буквы</button>
+  <button class="mobile-nav-btn" id="mnav-rules" onclick="showPage('rules')"><span>📖</span>Правила</button>
+  <button class="mobile-nav-btn" id="mnav-recite" onclick="showPage('recite')"><span>🎤</span>Чтение</button>
+  <button class="mobile-nav-btn" id="mnav-test" onclick="showPage('test')"><span>✏️</span>Тест</button>
+</div>
+
+<script>
+// ===== DATA =====
+const LETTERS = [
+  { l:'ا', name:'Алиф',    tr:'а',   makhraj:'Гортань (самая глубокая часть)', vowels:{f:'ا',k:'إِ',d:'أُ',s:'ءْ',sh:'آ'}, sounds:{f:'А',k:'И',d:'У',s:'—',sh:'АА'} },
+  { l:'ب', name:'Ба',      tr:'б',   makhraj:'Губы (обе губы смыкаются)', vowels:{f:'بَ',k:'بِ',d:'بُ',s:'بْ',sh:'بَّ'}, sounds:{f:'БА',k:'БИ',d:'БУ',s:'Б',sh:'ББА'} },
+  { l:'ت', name:'Та',      tr:'т',   makhraj:'Зубы (кончик языка у верхних зубов)', vowels:{f:'تَ',k:'تِ',d:'تُ',s:'تْ',sh:'تَّ'}, sounds:{f:'ТА',k:'ТИ',d:'ТУ',s:'Т',sh:'ТТА'} },
+  { l:'ث', name:'Са',      tr:'с',   makhraj:'Зубы (кончик языка между зубов)', vowels:{f:'ثَ',k:'ثِ',d:'ثُ',s:'ثْ',sh:'ثَّ'}, sounds:{f:'СА',k:'СИ',d:'СУ',s:'С',sh:'ССА'} },
+  { l:'ج', name:'Джим',    tr:'дж',  makhraj:'Нёбо (средняя часть языка)', vowels:{f:'جَ',k:'جِ',d:'جُ',s:'جْ',sh:'جَّ'}, sounds:{f:'ДЖА',k:'ДЖИ',d:'ДЖУ',s:'ДЖ',sh:'ДЖДЖА'} },
+  { l:'ح', name:'Ха',      tr:'х',   makhraj:'Гортань (средняя часть)', vowels:{f:'حَ',k:'حِ',d:'حُ',s:'حْ',sh:'حَّ'}, sounds:{f:'ХА',k:'ХИ',d:'ХУ',s:'Х',sh:'ХХА'} },
+  { l:'خ', name:'Хаа',     tr:'х',   makhraj:'Гортань (верхняя часть)', vowels:{f:'خَ',k:'خِ',d:'خُ',s:'خْ',sh:'خَّ'}, sounds:{f:'ХА',k:'ХИ',d:'ХУ',s:'Х',sh:'ХХА'} },
+  { l:'د', name:'Даль',    tr:'д',   makhraj:'Зубы (кончик языка у корней верхних зубов)', vowels:{f:'دَ',k:'دِ',d:'دُ',s:'دْ',sh:'دَّ'}, sounds:{f:'ДА',k:'ДИ',d:'ДУ',s:'Д',sh:'ДДА'} },
+  { l:'ذ', name:'Заль',    tr:'з',   makhraj:'Зубы (кончик языка между зубов)', vowels:{f:'ذَ',k:'ذِ',d:'ذُ',s:'ذْ',sh:'ذَّ'}, sounds:{f:'ЗА',k:'ЗИ',d:'ЗУ',s:'З',sh:'ЗЗА'} },
+  { l:'ر', name:'Ра',      tr:'р',   makhraj:'Язык (кончик у альвеол)', vowels:{f:'رَ',k:'رِ',d:'رُ',s:'رْ',sh:'رَّ'}, sounds:{f:'РА',k:'РИ',d:'РУ',s:'Р',sh:'РРА'} },
+  { l:'ز', name:'Зайн',    tr:'з',   makhraj:'Зубы (кончик языка у нижних зубов)', vowels:{f:'زَ',k:'زِ',d:'زُ',s:'زْ',sh:'زَّ'}, sounds:{f:'ЗА',k:'ЗИ',d:'ЗУ',s:'З',sh:'ЗЗА'} },
+  { l:'س', name:'Син',     tr:'с',   makhraj:'Зубы (кончик языка)', vowels:{f:'سَ',k:'سِ',d:'سُ',s:'سْ',sh:'سَّ'}, sounds:{f:'СА',k:'СИ',d:'СУ',s:'С',sh:'ССА'} },
+  { l:'ش', name:'Шин',     tr:'ш',   makhraj:'Нёбо (передняя часть)', vowels:{f:'شَ',k:'شِ',d:'شُ',s:'شْ',sh:'شَّ'}, sounds:{f:'ША',k:'ШИ',d:'ШУ',s:'Ш',sh:'ШША'} },
+  { l:'ص', name:'Сад',     tr:'с',   makhraj:'Зубы (эмфатический)', vowels:{f:'صَ',k:'صِ',d:'صُ',s:'صْ',sh:'صَّ'}, sounds:{f:'СА',k:'СИ',d:'СУ',s:'С',sh:'ССА'} },
+  { l:'ض', name:'Дад',     tr:'д',   makhraj:'Коренной зуб (боковая часть языка)', vowels:{f:'ضَ',k:'ضِ',d:'ضُ',s:'ضْ',sh:'ضَّ'}, sounds:{f:'ДА',k:'ДИ',d:'ДУ',s:'Д',sh:'ДДА'} },
+  { l:'ط', name:'Та',      tr:'т',   makhraj:'Зубы (эмфатический)', vowels:{f:'طَ',k:'طِ',d:'طُ',s:'طْ',sh:'طَّ'}, sounds:{f:'ТА',k:'ТИ',d:'ТУ',s:'Т',sh:'ТТА'} },
+  { l:'ظ', name:'Зха',     tr:'з',   makhraj:'Зубы (эмфатический между зубов)', vowels:{f:'ظَ',k:'ظِ',d:'ظُ',s:'ظْ',sh:'ظَّ'}, sounds:{f:'ЗА',k:'ЗИ',d:'ЗУ',s:'З',sh:'ЗЗА'} },
+  { l:'ع', name:'Айн',     tr:'ъ',   makhraj:'Гортань (середина гортани)', vowels:{f:'عَ',k:'عِ',d:'عُ',s:'عْ',sh:'عَّ'}, sounds:{f:'АА',k:'ИИ',d:'УУ',s:'АЪ',sh:'ААА'} },
+  { l:'غ', name:'Гайн',    tr:'г',   makhraj:'Гортань (верхняя часть — «гаргара»)', vowels:{f:'غَ',k:'غِ',d:'غُ',s:'غْ',sh:'غَّ'}, sounds:{f:'ГА',k:'ГИ',d:'ГУ',s:'Г',sh:'ГГА'} },
+  { l:'ف', name:'Фа',      tr:'ф',   makhraj:'Губы (нижняя губа + верхние зубы)', vowels:{f:'فَ',k:'فِ',d:'فُ',s:'فْ',sh:'فَّ'}, sounds:{f:'ФА',k:'ФИ',d:'ФУ',s:'Ф',sh:'ФФА'} },
+  { l:'ق', name:'Каф',     tr:'к',   makhraj:'Нёбо (задняя часть языка у нёба)', vowels:{f:'قَ',k:'قِ',d:'قُ',s:'قْ',sh:'قَّ'}, sounds:{f:'КА',k:'КИ',d:'КУ',s:'К',sh:'ККА'} },
+  { l:'ك', name:'Кяф',     tr:'к',   makhraj:'Нёбо (средняя часть языка)', vowels:{f:'كَ',k:'كِ',d:'كُ',s:'كْ',sh:'كَّ'}, sounds:{f:'КА',k:'КИ',d:'КУ',s:'К',sh:'ККА'} },
+  { l:'ل', name:'Лям',     tr:'л',   makhraj:'Язык (края языка у боковых зубов)', vowels:{f:'لَ',k:'لِ',d:'لُ',s:'لْ',sh:'لَّ'}, sounds:{f:'ЛА',k:'ЛИ',d:'ЛУ',s:'Л',sh:'ЛЛА'} },
+  { l:'م', name:'Мим',     tr:'м',   makhraj:'Губы (обе губы смыкаются)', vowels:{f:'مَ',k:'مِ',d:'مُ',s:'مْ',sh:'مَّ'}, sounds:{f:'МА',k:'МИ',d:'МУ',s:'М',sh:'ММА'} },
+  { l:'ن', name:'Нун',     tr:'н',   makhraj:'Язык (кончик у альвеол)', vowels:{f:'نَ',k:'نِ',d:'نُ',s:'نْ',sh:'نَّ'}, sounds:{f:'НА',k:'НИ',d:'НУ',s:'Н',sh:'ННА'} },
+  { l:'ه', name:'Ха',      tr:'х',   makhraj:'Гортань (самая нижняя)', vowels:{f:'هَ',k:'هِ',d:'هُ',s:'هْ',sh:'هَّ'}, sounds:{f:'ХА',k:'ХИ',d:'ХУ',s:'Х',sh:'ХХА'} },
+  { l:'و', name:'Вав',     tr:'в',   makhraj:'Губы (округлённые, не смыкаются)', vowels:{f:'وَ',k:'وِ',d:'وُ',s:'وْ',sh:'وَّ'}, sounds:{f:'ВА',k:'ВИ',d:'ВУ',s:'В',sh:'ВВА'} },
+  { l:'ي', name:'Йа',      tr:'й',   makhraj:'Нёбо (средняя часть языка)', vowels:{f:'يَ',k:'يِ',d:'يُ',s:'يْ',sh:'يَّ'}, sounds:{f:'ЙА',k:'ЙИ',d:'ЙУ',s:'Й',sh:'ЙЙА'} },
+];
+
+// ===== STATE =====
+let state = { done: [], streak: 0, lastVisit: '', score: 0 };
+let practiceIdx = 0;
+let practiceQueue = [];
+let isFlipped = false;
+let testQ = 0, testScore = 0, testAnswered = false;
+let testQuestions = [];
+let modalCurrentLetter = null;
+let voicesReady = false;
+
+// ===== STORAGE =====
+function loadState() {
+  try {
+    const s = localStorage.getItem('tajwid_state');
+    if (s) state = {...state, ...JSON.parse(s)};
+  } catch(e) {}
+  updateStreak();
+}
+function saveState() {
+  localStorage.setItem('tajwid_state', JSON.stringify(state));
+}
+function updateStreak() {
+  const today = new Date().toDateString();
+  const yesterday = new Date(Date.now()-86400000).toDateString();
+  if (state.lastVisit === today) return;
+  if (state.lastVisit === yesterday) state.streak++;
+  else if (state.lastVisit !== today) state.streak = state.lastVisit ? 1 : 1;
+  state.lastVisit = today;
+  saveState();
+}
+
+// ===== СИСТЕМА ЗВУКА =====
+// Для букв: MP3 с islamcan.com (мужской голос носителя) ✅
+// Для слогов БА/БИ/БУ: Web Speech API с мужским голосом Windows/Android
+// Windows: "Microsoft Naayf" (Saudi Arabic, мужской)
+// Android Chrome: "Arabic (Saudi Arabia)" обычно мужской
+// Fallback: Google TTS
+
+let currentAudio = null;
+let arabicMaleVoice = null;
+
+// Найти мужской арабский голос в системе
+function findMaleArabicVoice() {
+  const voices = window.speechSynthesis.getVoices();
+  // Приоритет: Naayf (мужской Saudi), потом любой арабский мужской
+  const maleNames = ['naayf', 'hamed', 'tarik', 'ossama', 'male', 'man'];
+  // Сначала ищем явно мужской
+  let voice = voices.find(v =>
+    v.lang.startsWith('ar') &&
+    maleNames.some(n => v.name.toLowerCase().includes(n))
+  );
+  // Если нет — берём любой арабский (на Windows это Naayf)
+  if (!voice) voice = voices.find(v => v.lang === 'ar-SA');
+  if (!voice) voice = voices.find(v => v.lang.startsWith('ar'));
+  arabicMaleVoice = voice || null;
+  return arabicMaleVoice;
+}
+
+// MP3 записи носителей для отдельных букв (мужской голос islamcan.com)
+const LETTER_AUDIO = {
+  'ا': 'https://www.islamcan.com/learn-arabic/arabic-alphabets/001-alif.mp3',
+  'ب': 'https://www.islamcan.com/learn-arabic/arabic-alphabets/ba.mp3',
+  'ت': 'https://www.islamcan.com/learn-arabic/arabic-alphabets/003-taa.mp3',
+  'ث': 'https://www.islamcan.com/learn-arabic/arabic-alphabets/004-tha.mp3',
+  'ج': 'https://www.islamcan.com/learn-arabic/arabic-alphabets/005-jeem.mp3',
+  'ح': 'https://www.islamcan.com/learn-arabic/arabic-alphabets/006-haa.mp3',
+  'خ': 'https://www.islamcan.com/learn-arabic/arabic-alphabets/007-khaa.mp3',
+  'د': 'https://www.islamcan.com/learn-arabic/arabic-alphabets/008-dal.mp3',
+  'ذ': 'https://www.islamcan.com/learn-arabic/arabic-alphabets/009-dhal.mp3',
+  'ر': 'https://www.islamcan.com/learn-arabic/arabic-alphabets/010-raa.mp3',
+  'ز': 'https://www.islamcan.com/learn-arabic/arabic-alphabets/011-jaa.mp3',
+  'س': 'https://www.islamcan.com/learn-arabic/arabic-alphabets/012-seen.mp3',
+  'ش': 'https://www.islamcan.com/learn-arabic/arabic-alphabets/013-sheen.mp3',
+  'ص': 'https://www.islamcan.com/learn-arabic/arabic-alphabets/014-saad.mp3',
+  'ض': 'https://www.islamcan.com/learn-arabic/arabic-alphabets/015-dhaad.mp3',
+  'ط': 'https://www.islamcan.com/learn-arabic/arabic-alphabets/016-toa.mp3',
+  'ظ': 'https://www.islamcan.com/learn-arabic/arabic-alphabets/017-dhaa.mp3',
+  'ع': 'https://www.islamcan.com/learn-arabic/arabic-alphabets/018-ain.mp3',
+  'غ': 'https://www.islamcan.com/learn-arabic/arabic-alphabets/019-ghain.mp3',
+  'ف': 'https://www.islamcan.com/learn-arabic/arabic-alphabets/020-faa.mp3',
+  'ق': 'https://www.islamcan.com/learn-arabic/arabic-alphabets/021-qaaf.mp3',
+  'ك': 'https://www.islamcan.com/learn-arabic/arabic-alphabets/022-kaaf.mp3',
+  'ل': 'https://www.islamcan.com/learn-arabic/arabic-alphabets/023-laam.mp3',
+  'م': 'https://www.islamcan.com/learn-arabic/arabic-alphabets/024-meem.mp3',
+  'ن': 'https://www.islamcan.com/learn-arabic/arabic-alphabets/025-noon.mp3',
+  'ه': 'https://www.islamcan.com/learn-arabic/arabic-alphabets/026-haa2.mp3',
+  'و': 'https://www.islamcan.com/learn-arabic/arabic-alphabets/027-waaw.mp3',
+  'ي': 'https://www.islamcan.com/learn-arabic/arabic-alphabets/028-yaa.mp3',
+};
+
+function stopAudio() {
+  if (currentAudio) { currentAudio.pause(); currentAudio = null; }
+  if (window.speechSynthesis) window.speechSynthesis.cancel();
+}
+
+// Web Speech с мужским голосом (медленно для чёткости слогов)
+function speakWithWebSpeech(text, rate = 0.6) {
+  const synth = window.speechSynthesis;
+  if (!synth) return false;
+  synth.cancel();
+  const u = new SpeechSynthesisUtterance(text);
+  const voice = arabicMaleVoice || findMaleArabicVoice();
+  if (voice) u.voice = voice;
+  u.lang = 'ar-SA';
+  u.rate = rate;
+  u.pitch = 0.85; // Чуть ниже = мужественнее
+  u.onerror = () => {};
+  setTimeout(() => synth.speak(u), 30);
+  return true;
+}
+
+// Главная функция — для фраз и слогов
+function speakArabic(text, btn) {
+  if (!text) return;
+  stopAudio();
+  if (btn) {
+    document.querySelectorAll('.sound-btn.playing, .vowel-btn.playing').forEach(b => b.classList.remove('playing'));
+    btn.classList.add('playing');
+    setTimeout(() => btn && btn.classList.remove('playing'), 3000);
+  }
+  // Если есть арабский голос в системе — используем его
+  if (arabicMaleVoice) {
+    speakWithWebSpeech(text);
+    return;
+  }
+  // Иначе — Google TTS (работает всегда, женский но чёткий)
+  const encoded = encodeURIComponent(text);
+  const audio = new Audio(`https://translate.googleapis.com/translate_tts?ie=UTF-8&tl=ar&client=gtx&q=${encoded}`);
+  currentAudio = audio;
+  audio.play().catch(() => speakWithWebSpeech(text));
+  audio.onended = () => { currentAudio = null; };
+}
+
+// Для букв — MP3 носителя (всегда мужской голос islamcan.com)
+function speakLetter(text, btn) {
+  if (!text) return;
+  stopAudio();
+  if (btn) {
+    document.querySelectorAll('.sound-btn.playing').forEach(b => b.classList.remove('playing'));
+    btn.classList.add('playing');
+    setTimeout(() => btn && btn.classList.remove('playing'), 2500);
+  }
+  const clean = text.replace(/[\u064B-\u065F\u0670]/g, '').trim();
+  const mp3 = LETTER_AUDIO[clean] || LETTER_AUDIO[clean.charAt(0)];
+  if (mp3) {
+    const audio = new Audio(mp3);
+    currentAudio = audio;
+    audio.play().catch(() => speakWithWebSpeech(text));
+    audio.onended = () => { currentAudio = null; };
+  } else {
+    speakArabic(text);
+  }
+}
+
+// Слоги БА/БИ/БУ — медленно и чётко через мужской Web Speech
+function speakVowel(syllable, baseLetter, btn) {
+  if (btn) {
+    document.querySelectorAll('.vowel-btn.playing').forEach(b => b.classList.remove('playing'));
+    btn.classList.add('playing');
+    setTimeout(() => btn && btn.classList.remove('playing'), 2000);
+  }
+  stopAudio();
+  speakWithWebSpeech(syllable, 0.5); // медленнее для учёбы
+}
+
+function initSpeech() {
+  // Ждём загрузки голосов (Chrome загружает асинхронно)
+  if (window.speechSynthesis) {
+    window.speechSynthesis.onvoiceschanged = () => {
+      const v = findMaleArabicVoice();
+      if (v) {
+        const isMale = ['naayf','hamed','tarik'].some(n => v.name.toLowerCase().includes(n));
+        setSoundStatus('ok', `✅ Голос: ${v.name}${isMale ? ' (мужской)' : ''}`);
+      } else {
+        // Показываем все доступные голоса для диагностики
+        const all = window.speechSynthesis.getVoices();
+        const arVoices = all.filter(v => v.lang.startsWith('ar'));
+        if (arVoices.length > 0) {
+          // Есть арабские голоса — берём первый
+          arabicMaleVoice = arVoices[0];
+          setSoundStatus('ok', `✅ Голос: ${arVoices[0].name}`);
+        } else {
+          const names = all.slice(0,5).map(v=>v.name).join(', ');
+          setSoundStatus('warn', `⚠️ Арабский не найден. Голоса: ${names || 'нет'}`);
+        }
+      }
+    };
+    // Попробуем сразу
+    setTimeout(() => {
+      const v = findMaleArabicVoice();
+      if (v) setSoundStatus('ok', `✅ Голос: ${v.name}`);
+    }, 500);
+  }
+}
+
+function setSoundStatus(type, msg) {
+  const el = document.getElementById('sound-status');
+  if (!el) return;
+  el.textContent = msg;
+  el.className = 'sound-status ' + type;
+}
+
+
+
+
+
+
+
+
+// ===== PAGES =====
+function showPage(name) {
+  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+  document.getElementById('page-' + name).classList.add('active');
+  document.querySelectorAll('nav button').forEach(b => b.classList.remove('active'));
+  const nb = document.getElementById('nav-' + name);
+  if (nb) nb.classList.add('active');
+  document.querySelectorAll('.mobile-nav-btn').forEach(b => b.classList.remove('active'));
+  const mb = document.getElementById('mnav-' + name);
+  if (mb) mb.classList.add('active');
+  if (name === 'home') updateHome();
+  if (name === 'practice') initPractice();
+  if (name === 'test') initTest();
+  if (name === 'recite') initRecite();
+}
+
+// ===== HOME =====
+function updateHome() {
+  const done = state.done.length;
+  const pct = Math.round(done / 28 * 100);
+  document.getElementById('prog-bar').style.width = pct + '%';
+  document.getElementById('prog-done').textContent = done;
+  document.getElementById('prog-pct').textContent = pct;
+  document.getElementById('stat-done').textContent = done;
+  document.getElementById('stat-streak').textContent = state.streak;
+  document.getElementById('stat-score').textContent = state.score;
+  document.getElementById('streak-count').textContent = state.streak;
+
+  // Misbaha
+  const mb = document.getElementById('misbaha');
+  mb.innerHTML = '';
+  for (let i = 0; i < 28; i++) {
+    const bead = document.createElement('div');
+    bead.className = 'bead' + (i < done ? ' done' : '');
+    mb.appendChild(bead);
+  }
+}
+
+// ===== ALPHABET =====
+function buildAlphabet() {
+  const grid = document.getElementById('letters-grid');
+  grid.innerHTML = '';
+  LETTERS.forEach((lt, i) => {
+    const done = state.done.includes(lt.l);
+    const card = document.createElement('div');
+    card.className = 'letter-card' + (done ? ' done' : '');
+    card.innerHTML = `
+      <span class="letter-arabic">${lt.l}</span>
+      <div class="letter-name">${lt.name}</div>
+      <div class="letter-translit">${lt.tr}</div>
+      <button class="sound-btn" onclick="event.stopPropagation(); speakLetter('${lt.l}', this)">🔊</button>
+    `;
+    card.addEventListener('click', () => openModal(i));
+    grid.appendChild(card);
+  });
+}
+
+// ===== MODAL =====
+function openModal(idx) {
+  const lt = LETTERS[idx];
+  modalCurrentLetter = lt.l;
+  document.getElementById('modal-letter').textContent = lt.l;
+  document.getElementById('modal-name').textContent = lt.name;
+  document.getElementById('modal-translit').textContent = lt.tr;
+  document.getElementById('modal-makhraj').textContent = lt.makhraj;
+
+  // Vowels
+  const vg = document.getElementById('modal-vowels');
+  const types = [
+    {key:'f', arabic: lt.vowels.f, name: 'Фатха', label: lt.sounds.f},
+    {key:'k', arabic: lt.vowels.k, name: 'Касра', label: lt.sounds.k},
+    {key:'d', arabic: lt.vowels.d, name: 'Дамма', label: lt.sounds.d},
+    {key:'s', arabic: lt.vowels.s, name: 'Сукун', label: lt.sounds.s},
+    {key:'sh', arabic: lt.vowels.sh, name: 'Шадда', label: lt.sounds.sh},
+  ];
+  vg.innerHTML = types.map(v => `
+    <div class="vowel-btn" onclick="speakVowel('${v.arabic}', '${lt.l}', this)">
+      <span class="vowel-arabic">${v.arabic}</span>
+      <div class="vowel-label">${v.name}</div>
+      <div class="vowel-name">${v.label}</div>
+    </div>
+  `).join('');
+
+  const doneBtn = document.getElementById('modal-done-btn');
+  if (state.done.includes(lt.l)) {
+    doneBtn.textContent = '✓ Уже изучено';
+    doneBtn.style.background = 'var(--bg3)';
+    doneBtn.style.color = 'var(--green)';
+  } else {
+    doneBtn.textContent = '✓ Знаю букву!';
+    doneBtn.style.background = '';
+    doneBtn.style.color = '';
+  }
+
+  document.getElementById('modal').classList.add('open');
+  speakLetter(lt.l);
+}
+
+function closeModal(e) {
+  if (e.target === document.getElementById('modal')) {
+    document.getElementById('modal').classList.remove('open');
+  }
+}
+
+function markLetterDone() {
+  if (!state.done.includes(modalCurrentLetter)) {
+    state.done.push(modalCurrentLetter);
+    state.score += 10;
+    saveState();
+    buildAlphabet();
+    showConfetti();
+    showToast('🌟 Машааллах! +10 очков');
+    const doneBtn = document.getElementById('modal-done-btn');
+    doneBtn.textContent = '✓ Уже изучено';
+    doneBtn.style.background = 'var(--bg3)';
+    doneBtn.style.color = 'var(--green)';
+    updateHome();
+  }
+  document.getElementById('modal').classList.remove('open');
+}
+
+// ===== PRACTICE =====
+function initPractice() {
+  practiceQueue = [...LETTERS].sort(() => Math.random() - 0.5);
+  practiceIdx = 0;
+  isFlipped = false;
+  document.getElementById('flashcard').classList.remove('flipped');
+  showPracticeCard();
+}
+
+function currentLetter() {
+  return practiceQueue[practiceIdx % practiceQueue.length].l;
+}
+
+function showPracticeCard() {
+  const lt = practiceQueue[practiceIdx % practiceQueue.length];
+  document.getElementById('fc-letter').textContent = lt.l;
+  document.getElementById('fc-name').textContent = lt.name;
+  document.getElementById('fc-translit').textContent = lt.tr;
+  const total = practiceQueue.length;
+  const idx = practiceIdx % total;
+  document.getElementById('practice-idx').textContent = idx + 1;
+  document.getElementById('practice-total').textContent = total;
+  document.getElementById('practice-bar').style.width = ((idx / total) * 100) + '%';
+  isFlipped = false;
+  document.getElementById('flashcard').classList.remove('flipped');
+}
+
+function flipCard() {
+  isFlipped = !isFlipped;
+  document.getElementById('flashcard').classList.toggle('flipped', isFlipped);
+  if (isFlipped) speakLetter(currentLetter());
+}
+
+function answerCard(correct) {
+  if (correct) {
+    state.score += 5;
+    saveState();
+    if (!isFlipped) flipCard();
+    setTimeout(() => {
+      practiceIdx++;
+      showPracticeCard();
+    }, 600);
+  } else {
+    practiceIdx++;
+    showPracticeCard();
+  }
+}
+
+// ===== TEST =====
+function initTest() {
+  testQ = 0; testScore = 0; testAnswered = false;
+  generateTestQuestions();
+  showTestQuestion();
+}
+
+function generateTestQuestions() {
+  const shuffled = [...LETTERS].sort(() => Math.random() - 0.5);
+  testQuestions = shuffled.slice(0, 10);
+}
+
+function showTestQuestion() {
+  if (testQ >= testQuestions.length) {
+    showTestResult(); return;
+  }
+  const lt = testQuestions[testQ];
+  testAnswered = false;
+  document.getElementById('test-letter').textContent = lt.l;
+  document.getElementById('test-q-num').textContent = testQ + 1;
+  document.getElementById('test-score').textContent = testScore;
+  document.getElementById('test-bar').style.width = (testQ / 10 * 100) + '%';
+
+  // Options: 1 correct + 3 wrong — показываем ТОЛЬКО название и транслит, без буквы!
+  const others = LETTERS.filter(x => x.l !== lt.l).sort(() => Math.random() - 0.5).slice(0, 3);
+  const options = [lt, ...others].sort(() => Math.random() - 0.5);
+
+  const og = document.getElementById('test-options');
+  og.innerHTML = options.map(o => `
+    <button class="test-option" onclick="selectTestOption(this, '${o.name}', '${lt.name}')">
+      <div style="font-size:1.05rem;font-weight:800;color:var(--text)">${o.name}</div>
+      <div style="font-size:0.8rem;color:var(--text2);margin-top:2px">${o.tr}</div>
+    </button>
+  `).join('');
+
+  // Произносим букву при каждом вопросе
+  speakLetter(lt.l);
+}
+
+function selectTestOption(btn, selected, correct) {
+  if (testAnswered) return;
+  testAnswered = true;
+  if (selected === correct) {
+    btn.classList.add('correct');
+    testScore += 10;
+    state.score += 10;
+    saveState();
+    showToast('✅ Правильно! +10');
+  } else {
+    btn.classList.add('wrong');
+    document.querySelectorAll('.test-option').forEach(b => {
+      const nameDiv = b.querySelector('div:nth-child(2)');
+      if (nameDiv && nameDiv.textContent.trim() === correct) b.classList.add('correct');
+    });
+    showToast('❌ Неверно');
+  }
+  setTimeout(() => {
+    testQ++;
+    showTestQuestion();
+  }, 1400);
+}
+
+function showTestResult() {
+  const container = document.querySelector('.test-container');
+  container.innerHTML = `
+    <div style="text-align:center;padding:40px 20px">
+      <div style="font-size:4rem;margin-bottom:16px">🎉</div>
+      <div style="font-size:2rem;font-weight:900;color:var(--gold);margin-bottom:8px">Тест завершён!</div>
+      <div style="font-size:1.1rem;color:var(--text2);margin-bottom:24px">Результат: ${testScore} / 100 очков</div>
+      <div style="font-size:3rem;font-weight:900;color:${testScore >= 70 ? 'var(--green)' : 'var(--red)'};margin-bottom:32px">
+        ${testScore >= 70 ? '⭐ Отлично!' : testScore >= 40 ? '👍 Хорошо!' : '📚 Учи дальше!'}
+      </div>
+      <button class="start-btn" style="margin:0 auto" onclick="initTest()">🔄 Пройти снова</button>
+    </div>
+  `;
+  if (testScore >= 70) { showConfetti(); showToast('🌟 Машааллах!'); }
+}
+
+// ===== EFFECTS =====
+function showConfetti() {
+  const c = document.getElementById('confetti');
+  c.innerHTML = '';
+  const colors = ['#C9A84C','#4CAF8C','#e8c46a','#ffffff','#6ee7c0'];
+  for (let i = 0; i < 60; i++) {
+    const p = document.createElement('div');
+    p.className = 'confetti-piece';
+    p.style.cssText = `
+      left: ${Math.random()*100}%;
+      background: ${colors[Math.floor(Math.random()*colors.length)]};
+      animation-delay: ${Math.random()*0.5}s;
+      animation-duration: ${1 + Math.random()}s;
+      transform: rotate(${Math.random()*360}deg);
+      width: ${6+Math.random()*8}px;
+      height: ${6+Math.random()*8}px;
+      border-radius: ${Math.random() > 0.5 ? '50%' : '2px'};
+    `;
+    c.appendChild(p);
+  }
+  setTimeout(() => c.innerHTML = '', 3000);
+}
+
+function showToast(msg) {
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.classList.add('show');
+  setTimeout(() => t.classList.remove('show'), 2500);
+}
+
+// ===== STARS =====
+function buildStars() {
+  const c = document.getElementById('stars');
+  for (let i = 0; i < 80; i++) {
+    const s = document.createElement('div');
+    s.className = 'star';
+    const size = Math.random() * 2.5 + 0.5;
+    s.style.cssText = `
+      left:${Math.random()*100}%;
+      top:${Math.random()*100}%;
+      width:${size}px; height:${size}px;
+      --d:${2+Math.random()*4}s;
+      --o:${0.4+Math.random()*0.6};
+      animation-delay:${Math.random()*4}s;
+    `;
+    c.appendChild(s);
+  }
+}
+
+// ===== RECITE (PRONUNCIATION CHECK) =====
+// Аудио — чтец Мишари Аль-Афаси (мужской голос, высокое качество)
+// cdn.islamic.network/quran/audio/128/ar.alafasy/{ayah_number}.mp3
+const RECITE_PHRASES = [
+  { arabic: 'بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ', translit: 'Бисмиллахир-рахманир-рахим', meaning: 'Во имя Аллаха, Милостивого, Милосердного', ayah: 1 },
+  { arabic: 'الْحَمْدُ لِلَّهِ رَبِّ الْعَالَمِينَ', translit: 'Аль-хамду лиллахи раббиль-аламин', meaning: 'Хвала Аллаху, Господу миров', ayah: 2 },
+  { arabic: 'الرَّحْمَٰنِ الرَّحِيمِ', translit: 'Ар-рахманир-рахим', meaning: 'Милостивому, Милосердному', ayah: 3 },
+  { arabic: 'مَالِكِ يَوْمِ الدِّينِ', translit: 'Малики йавмид-дин', meaning: 'Владыке Дня воздаяния', ayah: 4 },
+  { arabic: 'إِيَّاكَ نَعْبُدُ وَإِيَّاكَ نَسْتَعِينُ', translit: 'Иййака набуду ва иййака настаин', meaning: 'Тебе одному мы поклоняемся и Тебя одного молим о помощи', ayah: 5 },
+  { arabic: 'اهْدِنَا الصِّرَاطَ الْمُسْتَقِيمَ', translit: 'Ихдинас-сыратал-мустаким', meaning: 'Веди нас прямым путём', ayah: 6 },
+  { arabic: 'صِرَاطَ الَّذِينَ أَنْعَمْتَ عَلَيْهِمْ غَيْرِ الْمَغْضُوبِ عَلَيْهِمْ وَلَا الضَّالِّينَ', translit: 'Сыраталлязина анамта алейхим, гайриль-магдуби алейхим ва лад-даллин', meaning: 'Путём тех, кого Ты облагодетельствовал, не тех, на которых Ты разгневался, и не заблудших', ayah: 7 },
+  { arabic: 'قُلْ هُوَ اللَّهُ أَحَدٌ', translit: 'Куль хуваллаху ахад', meaning: 'Скажи: «Он — Аллах Единый»', ayah: 6229 },
+  { arabic: 'اللَّهُ الصَّمَدُ', translit: 'Аллахус-самад', meaning: 'Аллах Вечный', ayah: 6230 },
+  { arabic: 'لَمْ يَلِدْ وَلَمْ يُولَدْ', translit: 'Лям йалид ва лям йуляд', meaning: 'Он не родил и не был рождён', ayah: 6231 },
+];
+
+function getAyahAudio(ayah) {
+  return `https://cdn.islamic.network/quran/audio/128/ar.alafasy/${ayah}.mp3`;
+}
+
+let reciteIdx = 0;
+let recognition = null;
+let isRecording = false;
+
+function initRecite() {
+  reciteIdx = 0;
+  showRecitePhrase();
+  setupRecognition();
+}
+
+function playReciteAudio() {
+  const phrase = RECITE_PHRASES[reciteIdx];
+  stopAudio();
+  const audio = new Audio(getAyahAudio(phrase.ayah));
+  currentAudio = audio;
+  audio.volume = 1;
+  audio.play().catch(() => speakArabic(phrase.arabic));
+  audio.onended = () => { currentAudio = null; };
+}
+
+function setupRecognition() {
+  const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+  if (!SpeechRecognition) {
+    document.getElementById('no-speech-msg').style.display = 'block';
+    document.getElementById('mic-btn').style.display = 'none';
+    return;
+  }
+  recognition = new SpeechRecognition();
+  recognition.lang = 'ar-SA';
+  recognition.continuous = false;
+  recognition.interimResults = true;
+  recognition.maxAlternatives = 5;
+
+  recognition.onstart = () => {
+    isRecording = true;
+    document.getElementById('mic-btn').classList.add('recording');
+    document.getElementById('recite-status').textContent = '🎤 Слушаю... читай вслух';
+    document.getElementById('recite-result').classList.remove('show');
+  };
+
+  recognition.onresult = (e) => {
+    const transcript = Array.from(e.results).map(r => r[0].transcript).join('');
+    document.getElementById('recite-status').textContent = '📝 ' + transcript;
+    if (e.results[0].isFinal) { checkPronunciation(transcript); }
+  };
+
+  recognition.onerror = (e) => {
+    isRecording = false;
+    document.getElementById('mic-btn').classList.remove('recording');
+    recognition = null;
+
+    if (e.error === 'not-allowed') {
+      document.getElementById('recite-status').textContent = '❌ Разреши доступ к микрофону — нажми на замок в адресной строке браузера';
+    } else if (e.error === 'no-speech') {
+      document.getElementById('recite-status').textContent = '🔇 Ничего не услышал. Попробуй ещё раз';
+    } else if (e.error === 'language-not-supported' || e.error === 'service-not-allowed') {
+      // Показываем дружественную инструкцию вместо технической ошибки
+      const msg = document.getElementById('no-speech-msg');
+      msg.style.display = 'block';
+      msg.innerHTML = `
+        <div style="font-size:1.3rem;margin-bottom:8px">🎤 Как включить микрофон</div>
+        <div style="text-align:left;max-width:340px;margin:0 auto">
+          <div style="margin-bottom:10px"><strong>На компьютере (Windows):</strong><br>
+          Параметры → Время и язык → Язык → Добавить язык → <em>Арабский (Saudi Arabia)</em> → перезагрузи Chrome</div>
+          <div style="margin-bottom:10px"><strong>На iPhone / iPad:</strong><br>
+          Работает автоматически в Safari ✅</div>
+          <div><strong>На Android:</strong><br>
+          Работает в Chrome автоматически ✅</div>
+        </div>`;
+      document.getElementById('recite-status').textContent = '';
+    } else {
+      document.getElementById('recite-status').textContent = '⚠️ ' + e.error + ' — попробуй снова';
+    }
+  };
+
+  recognition.onend = () => {
+    isRecording = false;
+    document.getElementById('mic-btn').classList.remove('recording');
+    if (document.getElementById('recite-status').textContent.includes('Слушаю')) {
+      document.getElementById('recite-status').textContent = 'Нажми микрофон и читай';
+    }
+  };
+}
+
+function toggleRecording() {
+  if (!recognition) { setupRecognition(); if (!recognition) return; }
+  if (isRecording) {
+    recognition.stop();
+  } else {
+    try { recognition.start(); }
+    catch(e) { recognition = null; setupRecognition(); }
+  }
+}
+
+function normalizeArabic(str) {
+  return str
+    .replace(/[\u064B-\u065F\u0670\u06D4\u06D6-\u06DC\u06DF-\u06E4\u06E7\u06E8\u06EA-\u06ED]/g, '')
+    .replace(/[أإآ]/g, 'ا')
+    .replace(/ة/g, 'ه')
+    .replace(/ى/g, 'ي')
+    .replace(/\s+/g, ' ').trim();
+}
+
+function checkPronunciation(heard) {
+  const phrase = RECITE_PHRASES[reciteIdx];
+  const correctNorm = normalizeArabic(phrase.arabic);
+  const heardNorm = normalizeArabic(heard);
+
+  const correctWords = correctNorm.split(' ').filter(w => w.length > 0);
+  const heardWords = heardNorm.split(' ').filter(w => w.length > 0);
+
+  // Строгая проверка: считаем только точные совпадения слов
+  let matched = 0;
+  const wordResults = correctWords.map(word => {
+    // Точное совпадение или слово полностью содержит правильное (для слитного произношения)
+    const found = heardWords.some(hw => hw === word || (hw.length >= word.length * 0.8 && hw.includes(word)));
+    if (found) matched++;
+    return { word: phrase.arabic.split(/\s+/)[correctWords.indexOf(word)] || word, found };
+  });
+
+  // Штраф за посторонние слова которые не из этой фразы
+  const foreignWords = heardWords.filter(hw =>
+    !correctWords.some(cw => cw === hw || cw.includes(hw) || hw.includes(cw))
+  );
+  const foreignPenalty = Math.min(30, foreignWords.length * 10);
+
+  let score = Math.round((matched / correctWords.length) * 100) - foreignPenalty;
+  score = Math.max(0, score);
+
+  // Минимальный порог: хотя бы половина слов должна совпадать
+  if (matched < correctWords.length * 0.4) score = Math.min(score, 30);
+
+  document.getElementById('recite-heard-text').textContent = heard;
+  const scoreEl = document.getElementById('recite-score-text');
+
+  if (score >= 85) {
+    scoreEl.textContent = '✅ ' + score + '% — Машааллах!';
+    scoreEl.className = 'recite-score good';
+    if (score >= 95) { showConfetti(); showToast('🌟 Отлично! Машааллах!'); }
+    else showToast('✅ Хорошее чтение! +5');
+    state.score += 5; saveState();
+  } else if (score >= 55) {
+    scoreEl.textContent = '🔶 ' + score + '% — Неплохо, повтори';
+    scoreEl.className = 'recite-score ok';
+    showToast('🔶 Почти! Послушай ещё раз и повтори');
+  } else {
+    scoreEl.textContent = '❌ ' + score + '% — Послушай образец и читай медленнее';
+    scoreEl.className = 'recite-score bad';
+    showToast('❌ Нажми 🔊 послушай Аль-Афаси и повтори');
+  }
+
+  // Показываем слова: зелёный = правильно, красный = пропущено
+  const originalWords = phrase.arabic.split(/\s+/);
+  const wordsEl = document.getElementById('recite-words');
+  wordsEl.innerHTML = correctWords.map((w, i) => {
+    const orig = originalWords[i] || w;
+    return `<span class="recite-word ${wordResults[i]?.found ? 'match' : 'miss'}">${orig}</span>`;
+  }).join('');
+
+  document.getElementById('recite-result').classList.add('show');
+  document.getElementById('recite-status').textContent = foreignWords.length > 0
+    ? '⚠️ Обнаружены посторонние слова — читай только показанный аят'
+    : 'Результат готов';
+}
+
+function showRecitePhrase() {
+  const p = RECITE_PHRASES[reciteIdx];
+  document.getElementById('recite-arabic').textContent = p.arabic;
+  document.getElementById('recite-translit').textContent = p.translit;
+  document.getElementById('recite-meaning').textContent = p.meaning;
+  document.getElementById('recite-idx-num').textContent = reciteIdx + 1;
+  document.getElementById('recite-total-num').textContent = RECITE_PHRASES.length;
+  document.getElementById('recite-result').classList.remove('show');
+  document.getElementById('recite-status').textContent = 'Нажми микрофон и читай';
+}
+
+function nextRecite() {
+  reciteIdx = (reciteIdx + 1) % RECITE_PHRASES.length;
+  showRecitePhrase();
+}
+function prevRecite() {
+  reciteIdx = (reciteIdx - 1 + RECITE_PHRASES.length) % RECITE_PHRASES.length;
+  showRecitePhrase();
+}
+
+// ===== INIT =====
+loadState();
+buildStars();
+buildAlphabet();
+updateHome();
+initSpeech();
+
+function toggleRule(id) {
+  const card = document.getElementById(id);
+  card.classList.toggle('open');
+}
+</script>
+</body>
+</html>
