@@ -420,6 +420,126 @@
   .test-score-num { font-size: 1.1rem; font-weight: 900; color: var(--gold); }
   .test-score-lbl { font-size: 0.75rem; color: var(--text2); font-weight: 700; }
 
+  /* Tajwid Practice Page */
+  .tajwid-tab {
+    background: var(--card); border: 2px solid var(--border);
+    border-radius: 12px; padding: 8px 16px; cursor: pointer;
+    color: var(--text); font-size: 0.85rem; font-weight: 700; transition: all 0.2s;
+  }
+  .tajwid-tab:hover { border-color: var(--gold); }
+  .tajwid-tab.active { border-color: var(--gold); background: rgba(201,168,76,0.12); color: var(--gold); }
+  .tajwid-practice-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 12px; }
+  @media(max-width:600px) { .tajwid-practice-grid { grid-template-columns: 1fr; } }
+  .tp-card {
+    background: var(--bg2); border: 2px solid var(--border);
+    border-radius: 14px; padding: 14px; transition: border-color 0.2s;
+  }
+  .tp-izhar  { border-color: rgba(76,175,140,0.35); }
+  .tp-idgam  { border-color: rgba(96,165,250,0.35); }
+  .tp-iklab  { border-color: rgba(167,139,250,0.35); }
+  .tp-ikhfa  { border-color: rgba(251,191,36,0.35); }
+  .tp-label  { font-size: 0.8rem; font-weight: 800; color: var(--text2); margin-bottom: 6px; }
+  .tp-rule   { font-size: 0.9rem; font-weight: 700; color: var(--text); margin-bottom: 10px; font-family: 'Amiri', serif; }
+  .tp-examples { display: flex; flex-direction: column; gap: 8px; margin-bottom: 10px; }
+  .tp-example {
+    background: var(--bg3); border-radius: 10px; padding: 10px;
+    cursor: pointer; transition: background 0.2s;
+  }
+  .tp-example:hover { background: var(--card2); }
+  .tp-example.playing { background: rgba(201,168,76,0.15); }
+  .tp-arabic  { font-family: 'Amiri', serif; font-size: 1.5rem; color: var(--gold); text-align: center; line-height: 1.4; }
+  .tp-translit { font-size: 0.75rem; color: var(--text2); text-align: center; margin-top: 2px; }
+  .tp-meaning  { font-size: 0.75rem; color: var(--text); text-align: center; }
+  .tp-mark     { font-size: 0.7rem; color: var(--green); text-align: center; font-weight: 700; margin-top: 4px; }
+  .tp-listen-btn {
+    width: 100%; background: transparent; border: 1px solid var(--border);
+    border-radius: 8px; padding: 6px; color: var(--text2); font-size: 0.8rem;
+    cursor: pointer; transition: all 0.2s;
+  }
+  .tp-listen-btn:hover { border-color: var(--gold); color: var(--gold); }
+
+  /* Ayah Analyzer */
+  .ayah-selector { display:flex; gap:8px; flex-wrap:wrap; margin-bottom:18px; }
+  .ayah-sel-btn {
+    background: var(--card); border: 2px solid var(--border); border-radius: 10px;
+    padding: 7px 14px; font-size:0.8rem; font-weight:800; color:var(--text2);
+    cursor:pointer; transition:all 0.2s;
+  }
+  .ayah-sel-btn:hover, .ayah-sel-btn.active { border-color:var(--gold); color:var(--gold); background:rgba(201,168,76,0.08); }
+
+  .ayah-display {
+    background: var(--card); border: 2px solid var(--border); border-radius: 18px;
+    padding: 24px 20px; margin-bottom: 18px; text-align:center;
+    direction: rtl;
+  }
+  .ayah-word-wrap { display:inline-flex; flex-direction:column; align-items:center; margin: 6px 4px; cursor:pointer; }
+  .ayah-word {
+    font-family: 'Amiri', serif; font-size: 2rem; line-height: 1.5;
+    padding: 4px 8px; border-radius: 8px; transition: all 0.2s;
+    border: 2px solid transparent;
+  }
+  .ayah-word:hover { background: rgba(201,168,76,0.12); border-color: var(--gold); }
+  .ayah-word.selected { background: rgba(201,168,76,0.2); border-color: var(--gold); transform: scale(1.05); }
+  .ayah-word.has-rule { border-bottom: 3px solid; }
+  .ayah-word-label { font-size: 0.65rem; color: var(--text2); margin-top: 2px; direction:ltr; }
+
+  /* Rule colors on words */
+  .rule-izhar   { border-bottom-color: #4CAF8C !important; color: #7ee8c4; }
+  .rule-idgam   { border-bottom-color: #60a5fa !important; color: #93c5fd; }
+  .rule-iklab   { border-bottom-color: #a78bfa !important; color: #c4b5fd; }
+  .rule-ikhfa   { border-bottom-color: #fbbf24 !important; color: #fcd34d; }
+  .rule-madd    { border-bottom-color: #f97316 !important; color: #fdba74; }
+  .rule-gunna   { border-bottom-color: #f472b6 !important; color: #f9a8d4; }
+  .rule-waqf    { border-bottom-color: #38bdf8 !important; color: #7dd3fc; }
+
+  .ayah-info-panel {
+    background: var(--card2); border-radius: 14px; padding: 16px;
+    margin-bottom: 16px; min-height: 80px; border-left: 4px solid var(--gold);
+    transition: border-color 0.3s;
+  }
+  .ayah-info-word { font-family:'Amiri',serif; font-size:2rem; color:var(--gold); margin-bottom:6px; }
+  .ayah-info-translit { font-size:0.85rem; color:var(--text2); margin-bottom:4px; }
+  .ayah-info-meaning { font-size:0.9rem; color:var(--text); margin-bottom:10px; }
+  .ayah-rules-list { display:flex; flex-wrap:wrap; gap:6px; }
+  .ayah-rule-badge {
+    padding: 4px 10px; border-radius: 20px; font-size:0.75rem; font-weight:800;
+    border: 1.5px solid; cursor:default;
+  }
+
+  .ayah-legend { display:flex; flex-wrap:wrap; gap:8px; margin-bottom:16px; }
+  .legend-item { display:flex; align-items:center; gap:5px; font-size:0.75rem; color:var(--text2); }
+  .legend-dot { width:10px; height:10px; border-radius:50%; flex-shrink:0; }
+
+  /* Similar letters */
+  .similar-group { background: var(--card); border: 1px solid var(--border); border-radius: 16px; padding: 16px; margin-bottom: 14px; }
+  .similar-title { font-size: 0.8rem; color: var(--text2); font-weight: 700; margin-bottom: 10px; }
+  .similar-letters { display: flex; gap: 10px; flex-wrap: wrap; }
+  .similar-letter-btn {
+    background: var(--bg2); border: 2px solid var(--border); border-radius: 12px;
+    padding: 10px 16px; cursor: pointer; transition: all 0.2s; text-align: center; min-width: 70px;
+  }
+  .similar-letter-btn:hover { border-color: var(--gold); transform: scale(1.05); }
+  .similar-letter-btn .sl-arabic { font-family: 'Amiri', serif; font-size: 2rem; color: var(--gold); }
+  .similar-letter-btn .sl-name { font-size: 0.75rem; color: var(--text2); margin-top: 2px; }
+  .similar-diff { font-size: 0.8rem; color: var(--text2); margin-top: 8px; line-height: 1.5; }
+
+  /* Plan */
+  .plan-week { margin-bottom: 20px; }
+  .plan-week-title { font-size: 0.9rem; font-weight: 800; color: var(--gold); margin-bottom: 10px; }
+  .plan-days { display: grid; grid-template-columns: repeat(7,1fr); gap: 6px; }
+  @media(max-width:500px) { .plan-days { grid-template-columns: repeat(5,1fr); } }
+  .plan-day {
+    background: var(--card); border: 2px solid var(--border); border-radius: 10px;
+    padding: 6px 4px; text-align: center; cursor: pointer; transition: all 0.15s;
+    min-height: 56px; display: flex; flex-direction: column; align-items: center; justify-content: center;
+  }
+  .plan-day:hover { border-color: var(--gold); }
+  .plan-day.done { border-color: var(--green); background: rgba(76,175,140,0.12); }
+  .plan-day.today { border-color: var(--gold); background: rgba(201,168,76,0.12); }
+  .plan-day-num { font-size: 0.7rem; color: var(--text2); }
+  .plan-day-topic { font-size: 0.65rem; color: var(--text); margin-top: 2px; line-height: 1.2; text-align:center; }
+  .plan-day.done .plan-day-topic { color: var(--green); }
+
   /* Toast - fixed properly */
   .toast {
     position: fixed;
@@ -643,6 +763,7 @@
     <button onclick="showPage('alphabet')" id="nav-alphabet">Алфавит</button>
     <button onclick="showPage('practice')" id="nav-practice">Практика</button>
     <button onclick="showPage('rules')" id="nav-rules">Правила</button>
+    <button onclick="showPage('tajwid')" id="nav-tajwid">🏋️ Упражнения</button>
     <button onclick="showPage('test')" id="nav-test">Тест</button>
     <button onclick="showPage('recite')" id="nav-recite">🎤 Чтение</button>
   </nav>
@@ -1091,6 +1212,335 @@
   </div>
 </div>
 
+<!-- TAJWID PRACTICE PAGE -->
+<div class="page" id="page-tajwid">
+  <div class="rules-container">
+    <div class="page-header" style="padding:0 0 20px">
+      <div class="page-title">Практика <span>таджвида</span></div>
+      <div class="page-desc">Узнай правило — найди его в Коране — повтори вслух</div>
+    </div>
+
+    <!-- Tabs -->
+    <div style="display:flex;gap:8px;margin-bottom:20px;flex-wrap:wrap">
+      <button class="tajwid-tab active" id="ttab-rules" onclick="showTajwidTab('rules')">📚 Правила + примеры</button>
+      <button class="tajwid-tab" id="ttab-ayah" onclick="showTajwidTab('ayah')">🔬 Разбор аята</button>
+      <button class="tajwid-tab" id="ttab-quiz" onclick="showTajwidTab('quiz')">🎯 Тест правил</button>
+      <button class="tajwid-tab" id="ttab-similar" onclick="showTajwidTab('similar')">🔤 Похожие буквы</button>
+      <button class="tajwid-tab" id="ttab-plan" onclick="showTajwidTab('plan')">📅 План 30 дней</button>
+    </div>
+
+    <!-- TAB 1: Rules + practice -->
+    <div id="ttab-content-rules">
+
+      <!-- Нун Сакин -->
+      <div class="rule-card">
+        <div class="rule-header" onclick="this.parentElement.classList.toggle('open')">
+          <div class="rule-icon" style="background:rgba(201,168,76,0.15)">نْ</div>
+          <div><div class="rule-title">Нун Сакин и Танвин</div><div class="rule-subtitle">Изхар · Идгам · Икляб · Ихфа</div></div>
+          <div class="rule-chevron">▼</div>
+        </div>
+        <div class="rule-body">
+          <div class="tajwid-practice-grid">
+
+            <div class="tp-card tp-izhar">
+              <div class="tp-label">🟢 Изхар — ясное чтение</div>
+              <div class="tp-rule">نْ перед: ء ه ع ح غ خ</div>
+              <div class="tp-examples">
+                <div class="tp-example" onclick="playAyah(6,this)">
+                  <div class="tp-arabic">مِنْ عِلْمٍ</div>
+                  <div class="tp-translit">мин 'ильмин</div>
+                  <div class="tp-meaning">«из знания»</div>
+                  <div class="tp-mark">نْ + ع = ясно</div>
+                </div>
+                <div class="tp-example" onclick="playAyah(1,this)">
+                  <div class="tp-arabic">مَنْ هَدَى</div>
+                  <div class="tp-translit">ман хада</div>
+                  <div class="tp-meaning">«кто наставил»</div>
+                  <div class="tp-mark">نْ + ه = ясно</div>
+                </div>
+              </div>
+              <button class="tp-listen-btn" onclick="speakArabic('مِنْ عِلْمٍ')">🔊 Послушать</button>
+            </div>
+
+            <div class="tp-card tp-idgam">
+              <div class="tp-label">🔵 Идгам — слияние</div>
+              <div class="tp-rule">نْ перед: ي ر م ل و ن</div>
+              <div class="tp-examples">
+                <div class="tp-example" onclick="playAyah(2,this)">
+                  <div class="tp-arabic">مَنْ يَعْمَلْ</div>
+                  <div class="tp-translit">май-йа'маль</div>
+                  <div class="tp-meaning">«кто делает»</div>
+                  <div class="tp-mark">نْ + ي = слияние</div>
+                </div>
+                <div class="tp-example" onclick="playAyah(3,this)">
+                  <div class="tp-arabic">مِنْ رَبِّكَ</div>
+                  <div class="tp-translit">мир-раббика</div>
+                  <div class="tp-meaning">«от твоего Господа»</div>
+                  <div class="tp-mark">نْ + ر = слияние</div>
+                </div>
+              </div>
+              <button class="tp-listen-btn" onclick="speakArabic('مَنْ يَعْمَلْ')">🔊 Послушать</button>
+            </div>
+
+            <div class="tp-card tp-iklab">
+              <div class="tp-label">🟣 Икляб — замена на م</div>
+              <div class="tp-rule">نْ или ـً перед: ب</div>
+              <div class="tp-examples">
+                <div class="tp-example" onclick="playAyah(4,this)">
+                  <div class="tp-arabic">مِنْ بَعْدِ</div>
+                  <div class="tp-translit">мим-ба'ди</div>
+                  <div class="tp-meaning">«после»</div>
+                  <div class="tp-mark">نْ + ب → م̃</div>
+                </div>
+                <div class="tp-example">
+                  <div class="tp-arabic">سَمِيعٌ بَصِيرٌ</div>
+                  <div class="tp-translit">самии-басыйр</div>
+                  <div class="tp-meaning">«Слышащий, Видящий»</div>
+                  <div class="tp-mark">ـً + ب → م̃</div>
+                </div>
+              </div>
+              <button class="tp-listen-btn" onclick="speakArabic('مِنْ بَعْدِ')">🔊 Послушать</button>
+            </div>
+
+            <div class="tp-card tp-ikhfa">
+              <div class="tp-label">🟡 Ихфа — скрытое произношение</div>
+              <div class="tp-rule">نْ перед остальными 15 буквами</div>
+              <div class="tp-examples">
+                <div class="tp-example" onclick="playAyah(5,this)">
+                  <div class="tp-arabic">مِنْ قَبْلِ</div>
+                  <div class="tp-translit">мин-каbли</div>
+                  <div class="tp-meaning">«до, прежде»</div>
+                  <div class="tp-mark">نْ + ق = скрыто</div>
+                </div>
+                <div class="tp-example">
+                  <div class="tp-arabic">إِنْ كُنْتُمْ</div>
+                  <div class="tp-translit">ин-кунтум</div>
+                  <div class="tp-meaning">«если вы были»</div>
+                  <div class="tp-mark">نْ + ك = скрыто</div>
+                </div>
+              </div>
+              <button class="tp-listen-btn" onclick="speakArabic('مِنْ قَبْلِ')">🔊 Послушать</button>
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+      <!-- Мим Сакин -->
+      <div class="rule-card">
+        <div class="rule-header" onclick="this.parentElement.classList.toggle('open')">
+          <div class="rule-icon" style="background:rgba(76,175,140,0.15)">مْ</div>
+          <div><div class="rule-title">Мим Сакин</div><div class="rule-subtitle">Ихфа шафави · Идгам мислейн · Изхар шафави</div></div>
+          <div class="rule-chevron">▼</div>
+        </div>
+        <div class="rule-body">
+          <div class="tajwid-practice-grid">
+            <div class="tp-card tp-ikhfa">
+              <div class="tp-label">🟡 Ихфа шафави</div>
+              <div class="tp-rule">مْ перед: ب</div>
+              <div class="tp-examples">
+                <div class="tp-example">
+                  <div class="tp-arabic">هُمْ بِهِ</div>
+                  <div class="tp-translit">хум-бихи</div>
+                  <div class="tp-meaning">«они в этом»</div>
+                  <div class="tp-mark">مْ + ب = скрыто</div>
+                </div>
+              </div>
+              <button class="tp-listen-btn" onclick="speakArabic('هُمْ بِهِ')">🔊 Послушать</button>
+            </div>
+            <div class="tp-card tp-idgam">
+              <div class="tp-label">🔵 Идгам мислейн</div>
+              <div class="tp-rule">مْ перед: م</div>
+              <div class="tp-examples">
+                <div class="tp-example">
+                  <div class="tp-arabic">لَهُمْ مَا</div>
+                  <div class="tp-translit">лахум-ма</div>
+                  <div class="tp-meaning">«им то»</div>
+                  <div class="tp-mark">مْ + م = слияние</div>
+                </div>
+              </div>
+              <button class="tp-listen-btn" onclick="speakArabic('لَهُمْ مَا')">🔊 Послушать</button>
+            </div>
+            <div class="tp-card tp-izhar">
+              <div class="tp-label">🟢 Изхар шафави</div>
+              <div class="tp-rule">مْ перед всеми остальными буквами</div>
+              <div class="tp-examples">
+                <div class="tp-example">
+                  <div class="tp-arabic">عَلَيْهِمْ غَيْرِ</div>
+                  <div class="tp-translit">алейхим гайри</div>
+                  <div class="tp-meaning">«на них не»</div>
+                  <div class="tp-mark">مْ + غ = ясно</div>
+                </div>
+              </div>
+              <button class="tp-listen-btn" onclick="speakArabic('عَلَيْهِمْ غَيْرِ')">🔊 Послушать</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Мадд -->
+      <div class="rule-card">
+        <div class="rule-header" onclick="this.parentElement.classList.toggle('open')">
+          <div class="rule-icon" style="background:rgba(110,231,183,0.15)">مد</div>
+          <div><div class="rule-title">Мадд — удлинение</div><div class="rule-subtitle">Табии 2 · Мутасиль 5 · Мунфасиль 5 · Лязим 6</div></div>
+          <div class="rule-chevron">▼</div>
+        </div>
+        <div class="rule-body">
+          <div class="tajwid-practice-grid">
+            <div class="tp-card" style="border-color:rgba(201,168,76,0.3)">
+              <div class="tp-label">⏱ Мадд Табии — 2 харфа</div>
+              <div class="tp-rule">Алиф, Вав, Йа без хамзы рядом</div>
+              <div class="tp-examples">
+                <div class="tp-example">
+                  <div class="tp-arabic">قَالَ — كِتَاب — نُورٌ</div>
+                  <div class="tp-translit">кааля — китааб — нуур</div>
+                  <div class="tp-meaning">«сказал — книга — свет»</div>
+                  <div class="tp-mark">2 харфа ≈ 1 сек</div>
+                </div>
+              </div>
+              <button class="tp-listen-btn" onclick="speakArabic('قَالَ كِتَاب نُورٌ')">🔊 Послушать</button>
+            </div>
+            <div class="tp-card" style="border-color:rgba(167,139,250,0.3)">
+              <div class="tp-label">⏱⏱⏱ Мадд Мутасиль — 5 харфов</div>
+              <div class="tp-rule">Мадд + Хамза в ОДНОМ слове</div>
+              <div class="tp-examples">
+                <div class="tp-example">
+                  <div class="tp-arabic">جَاءَ — سَاءَ — جِيءَ</div>
+                  <div class="tp-translit">джаа-а — саа-а — джии-а</div>
+                  <div class="tp-meaning">«пришёл — плохо — принесён»</div>
+                  <div class="tp-mark">5 харфов ≈ 2.5 сек</div>
+                </div>
+              </div>
+              <button class="tp-listen-btn" onclick="speakArabic('جَاءَ')">🔊 Послушать</button>
+            </div>
+            <div class="tp-card" style="border-color:rgba(76,175,140,0.3)">
+              <div class="tp-label">⏱⏱⏱ Мадд Мунфасиль — 5 харфов</div>
+              <div class="tp-rule">Мадд + Хамза в РАЗНЫХ словах</div>
+              <div class="tp-examples">
+                <div class="tp-example">
+                  <div class="tp-arabic">إِنَّا أَنْزَلْنَا</div>
+                  <div class="tp-translit">иннаааа-анзальнаа</div>
+                  <div class="tp-meaning">«Воистину Мы ниспослали»</div>
+                  <div class="tp-mark">ا + ء = 5 харфов</div>
+                </div>
+              </div>
+              <button class="tp-listen-btn" onclick="playAyahNumber(6236)">🔊 Аль-Афаси</button>
+            </div>
+            <div class="tp-card" style="border-color:rgba(224,92,92,0.3)">
+              <div class="tp-label">⏱⏱⏱⏱ Мадд Лязим — 6 харфов</div>
+              <div class="tp-rule">Мадд + Сукун или Шадда</div>
+              <div class="tp-examples">
+                <div class="tp-example">
+                  <div class="tp-arabic">الحاقة — الضالين</div>
+                  <div class="tp-translit">аль-хааааааккa — ад-дааааааллин</div>
+                  <div class="tp-meaning">«Неизбежное — заблудших»</div>
+                  <div class="tp-mark">6 харфов ≈ 3 сек</div>
+                </div>
+              </div>
+              <button class="tp-listen-btn" onclick="speakArabic('الضالين')">🔊 Послушать</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Гуннэ -->
+      <div class="rule-card">
+        <div class="rule-header" onclick="this.parentElement.classList.toggle('open')">
+          <div class="rule-icon" style="background:rgba(251,191,36,0.15)">غنة</div>
+          <div><div class="rule-title">Гуннэ — носовой звук</div><div class="rule-subtitle">2 харфа через нос при ن и م с шаддой</div></div>
+          <div class="rule-chevron">▼</div>
+        </div>
+        <div class="rule-body">
+          <div class="rule-desc">Гуннэ — это особый носовой призвук, который всегда присутствует у букв نّ и مّ (с шаддой). Длина — 2 харфа.</div>
+          <div class="tajwid-practice-grid" style="grid-template-columns:1fr 1fr">
+            <div class="tp-card tp-idgam">
+              <div class="tp-label">نّ — Нун с шаддой</div>
+              <div class="tp-examples">
+                <div class="tp-example">
+                  <div class="tp-arabic">إِنَّ — إِنَّا</div>
+                  <div class="tp-translit">инна — инна</div>
+                  <div class="tp-mark">Нос вибрирует 2 харфа</div>
+                </div>
+              </div>
+              <button class="tp-listen-btn" onclick="speakArabic('إِنَّا أَنْزَلْنَاهُ')">🔊 Послушать</button>
+            </div>
+            <div class="tp-card tp-iklab">
+              <div class="tp-label">مّ — Мим с шаддой</div>
+              <div class="tp-examples">
+                <div class="tp-example">
+                  <div class="tp-arabic">ثُمَّ — أَمَّا</div>
+                  <div class="tp-translit">сумма — амма</div>
+                  <div class="tp-mark">Губы сомкнуты, нос</div>
+                </div>
+              </div>
+              <button class="tp-listen-btn" onclick="speakArabic('ثُمَّ')">🔊 Послушать</button>
+            </div>
+          </div>
+          <div class="rule-tip">Проверка: приложи палец под нос — должна чувствоваться вибрация воздуха при гуннэ.</div>
+        </div>
+      </div>
+
+      <!-- Вакф -->
+      <div class="rule-card">
+        <div class="rule-header" onclick="this.parentElement.classList.toggle('open')">
+          <div class="rule-icon" style="background:rgba(56,189,248,0.15)">وقف</div>
+          <div><div class="rule-title">Вакф — остановка</div><div class="rule-subtitle">Знаки остановки в Коране</div></div>
+          <div class="rule-chevron">▼</div>
+        </div>
+        <div class="rule-body">
+          <div class="tajwid-practice-grid">
+            <div class="tp-card tp-izhar">
+              <div class="tp-label" style="font-size:1.8rem;text-align:center">م</div>
+              <div class="tp-rule" style="text-align:center">Вакф Лязим — остановка обязательна</div>
+              <div class="tp-examples"><div class="tp-example"><div class="tp-arabic">وَمَا يَعْلَمُ تَأْوِيلَهُ إِلَّا اللَّهُ ۗ</div><div class="tp-meaning">«Никто не знает его толкования, кроме Аллаха» — здесь НУЖНО остановиться</div></div></div>
+            </div>
+            <div class="tp-card tp-idgam">
+              <div class="tp-label" style="font-size:1.8rem;text-align:center">ج</div>
+              <div class="tp-rule" style="text-align:center">Вакф Джаиз — остановка разрешена</div>
+              <div class="tp-examples"><div class="tp-example"><div class="tp-meaning">Можно остановиться или продолжить читать — оба варианта правильны.</div></div></div>
+            </div>
+            <div class="tp-card tp-ikhfa">
+              <div class="tp-label" style="font-size:1.8rem;text-align:center">لا</div>
+              <div class="tp-rule" style="text-align:center">Вакф Мамну — останавливаться нельзя</div>
+              <div class="tp-examples"><div class="tp-example"><div class="tp-meaning">Смысл аята нарушается при остановке. Нужно читать дальше или вернуться к началу аята.</div></div></div>
+            </div>
+            <div class="tp-card" style="border-color:rgba(201,168,76,0.3)">
+              <div class="tp-label" style="font-size:1.8rem;text-align:center">∴ или ؛</div>
+              <div class="tp-rule" style="text-align:center">Муанака — один из двух</div>
+              <div class="tp-examples"><div class="tp-example"><div class="tp-meaning">Две остановки связаны. Останови в одной — не останавливайся в другой.</div></div></div>
+            </div>
+          </div>
+          <div class="rule-tip">При остановке: последняя буква произносится без огласовки (сукун) или с лёгким слышимым выдохом.</div>
+        </div>
+      </div>
+
+    </div><!-- end ttab-content-rules -->
+
+    <!-- TAB AYAH: Разбор аята -->
+    <div id="ttab-content-ayah" style="display:none">
+      <div id="ayah-analyzer-container"></div>
+    </div>
+
+    <!-- TAB QUIZ: Тест по правилам -->
+    <div id="ttab-content-quiz" style="display:none">
+      <div id="tajwid-quiz-container"></div>
+    </div>
+
+    
+    <div id="ttab-content-similar" style="display:none">
+      <div class="rule-desc" style="margin-bottom:16px;text-align:center">Самые частые ошибки — перепутать похожие по виду буквы. Нажми на букву чтобы услышать разницу.</div>
+
+      <div id="similar-groups"></div>
+    </div>
+
+    <!-- TAB 3: План 30 дней -->
+    <div id="ttab-content-plan" style="display:none">
+      <div id="plan-grid"></div>
+    </div>
+
+  </div>
+</div>
+
 <!-- TEST PAGE -->
 <div class="page" id="page-test">
   <div class="test-container">
@@ -1217,6 +1667,7 @@
   <button class="mobile-nav-btn active" id="mnav-home" onclick="showPage('home')"><span>🏠</span>Главная</button>
   <button class="mobile-nav-btn" id="mnav-alphabet" onclick="showPage('alphabet')"><span>ا</span>Буквы</button>
   <button class="mobile-nav-btn" id="mnav-rules" onclick="showPage('rules')"><span>📖</span>Правила</button>
+  <button class="mobile-nav-btn" id="mnav-tajwid" onclick="showPage('tajwid')"><span>🏋️</span>Упражн.</button>
   <button class="mobile-nav-btn" id="mnav-recite" onclick="showPage('recite')"><span>🎤</span>Чтение</button>
   <button class="mobile-nav-btn" id="mnav-test" onclick="showPage('test')"><span>✏️</span>Тест</button>
 </div>
@@ -1997,6 +2448,506 @@ function nextRecite() {
 function prevRecite() {
   reciteIdx = (reciteIdx - 1 + RECITE_PHRASES.length) % RECITE_PHRASES.length;
   showRecitePhrase();
+}
+
+// ===== АУДИО-РАЗБОР АЯТА =====
+const AYAH_DATA = [
+  {
+    title: 'Аль-Фатиха 1', surah: '1:1',
+    words: [
+      { ar:'بِسْمِ', tr:'бисми', mean:'во имя', rules:[] },
+      { ar:'ٱللَّهِ', tr:'Аллахи', mean:'Аллаха', rules:[{name:'Шадда لّ',type:'gunna',note:'Лям с шаддой — усиленное произношение'}] },
+      { ar:'ٱلرَّحْمَٰنِ', tr:'ар-Рахмани', mean:'Милостивого', rules:[{name:'Мадд Табии',type:'madd',note:'Алиф после фатхи — 2 харфа удлинения'}] },
+      { ar:'ٱلرَّحِيمِ', tr:'ар-Рахими', mean:'Милосердного', rules:[{name:'Мадд Табии',type:'madd',note:'Йа после касры — 2 харфа удлинения'}] },
+    ]
+  },
+  {
+    title: 'Аль-Фатиха 2', surah: '1:2',
+    words: [
+      { ar:'ٱلْحَمْدُ', tr:'аль-хамду', mean:'хвала', rules:[{name:'Изхар шафави',type:'izhar',note:'مْ перед د — мим читается ясно'}] },
+      { ar:'لِلَّهِ', tr:'лиллахи', mean:'Аллаху', rules:[{name:'Шадда لّ',type:'gunna',note:'Лям с шаддой усиливается'}] },
+      { ar:'رَبِّ', tr:'рабби', mean:'Господу', rules:[{name:'Шадда بّ',type:'gunna',note:'Ба с шаддой — удвоение'}] },
+      { ar:'ٱلْعَٰلَمِينَ', tr:'аль-аламина', mean:'миров', rules:[{name:'Мадд Табии',type:'madd',note:'Йа после касры — 2 харфа'}] },
+    ]
+  },
+  {
+    title: 'Аль-Фатиха 4', surah: '1:4',
+    words: [
+      { ar:'مَٰلِكِ', tr:'малики', mean:'Владыке', rules:[{name:'Мадд Табии',type:'madd',note:'Алиф после фатхи — 2 харфа'}] },
+      { ar:'يَوْمِ', tr:'йавми', mean:'дня', rules:[] },
+      { ar:'ٱلدِّينِ', tr:'ад-дини', mean:'воздаяния', rules:[{name:'Шадда دّ',type:'gunna',note:'Даль с шаддой — солнечная буква'}] },
+    ]
+  },
+  {
+    title: 'Аль-Фатиха 6', surah: '1:6',
+    words: [
+      { ar:'ٱهْدِنَا', tr:'ихдина', mean:'веди нас', rules:[] },
+      { ar:'ٱلصِّرَٰطَ', tr:'ас-сырата', mean:'путём', rules:[{name:'Мадд Табии',type:'madd',note:'Алиф после фатхи — 2 харфа'}] },
+      { ar:'ٱلْمُسْتَقِيمَ', tr:'аль-мустакыма', mean:'прямым', rules:[{name:'Мадд Табии',type:'madd',note:'Йа после касры — 2 харфа'}] },
+    ]
+  },
+  {
+    title: 'Аль-Ихляс 1–2', surah: '112:1-2',
+    words: [
+      { ar:'قُلْ', tr:'куль', mean:'скажи', rules:[{name:'Сукун لْ',type:'waqf',note:'Лям без огласовки — чистый согласный'}] },
+      { ar:'هُوَ', tr:'хува', mean:'Он', rules:[] },
+      { ar:'ٱللَّهُ', tr:'Аллаху', mean:'Аллах', rules:[{name:'Шадда لّ',type:'gunna',note:'Лям с шаддой'}] },
+      { ar:'أَحَدٌ', tr:'ахадун', mean:'Единый', rules:[{name:'Танвин ـٌ',type:'ikhfa',note:'Танвин на конце — при продолжении чтения'}] },
+      { ar:'ٱللَّهُ', tr:'Аллаху', mean:'Аллах', rules:[{name:'Шадда لّ',type:'gunna',note:'Лям с шаддой'}] },
+      { ar:'ٱلصَّمَدُ', tr:'ас-самаду', mean:'Вечный', rules:[{name:'Шадда صّ',type:'gunna',note:'Сад усиливается'}] },
+    ]
+  },
+  {
+    title: 'Аят аль-Курси (нач.)', surah: '2:255',
+    words: [
+      { ar:'ٱللَّهُ', tr:'Аллаху', mean:'Аллах', rules:[{name:'Шадда لّ',type:'gunna',note:'Лям усиленная'}] },
+      { ar:'لَآ', tr:'ла', mean:'нет', rules:[{name:'Мадд Лязим',type:'madd',note:'Алиф мадд + сукун — 6 харфов'}] },
+      { ar:'إِلَٰهَ', tr:'илаха', mean:'бога', rules:[{name:'Мадд Табии',type:'madd',note:'Алиф после фатхи — 2 харфа'}] },
+      { ar:'إِلَّا', tr:'илла', mean:'кроме', rules:[{name:'Шадда لّ',type:'gunna',note:'Лям с шаддой'}] },
+      { ar:'هُوَ', tr:'хува', mean:'Он', rules:[] },
+      { ar:'ٱلْحَىُّ', tr:'аль-хаййу', mean:'Живой', rules:[{name:'Шадда يّ',type:'gunna',note:'Йа с шаддой — гуннэ'}] },
+      { ar:'ٱلْقَيُّومُ', tr:'аль-каййуму', mean:'Вечносущий', rules:[{name:'Шадда يّ',type:'gunna',note:'Йа с шаддой'}] },
+    ]
+  },
+  {
+    title: 'Ан-Нас 1–3', surah: '114:1-3',
+    words: [
+      { ar:'قُلْ', tr:'куль', mean:'скажи', rules:[{name:'Сукун لْ',type:'waqf',note:'Лям с сукуном'}] },
+      { ar:'أَعُوذُ', tr:'аузу', mean:'прибегаю', rules:[{name:'Мадд Табии',type:'madd',note:'Вав после даммы — 2 харфа'}] },
+      { ar:'بِرَبِّ', tr:'бираббы', mean:'к Господу', rules:[{name:'Шадда بّ',type:'gunna',note:'Ба с шаддой — удвоение'}] },
+      { ar:'ٱلنَّاسِ', tr:'ан-наси', mean:'людей', rules:[{name:'Шадда نّ',type:'gunna',note:'Нун с шаддой — гуннэ 2 харфа'},{name:'Мадд Табии',type:'madd',note:'Алиф после фатхи'}] },
+      { ar:'مَلِكِ', tr:'малики', mean:'Царя', rules:[] },
+      { ar:'ٱلنَّاسِ', tr:'ан-наси', mean:'людей', rules:[{name:'Шадда نّ',type:'gunna',note:'Нун с шаддой — гуннэ'},{name:'Мадд Табии',type:'madd',note:'Алиф после фатхи'}] },
+      { ar:'إِلَٰهِ', tr:'илахи', mean:'Бога', rules:[{name:'Мадд Табии',type:'madd',note:'Алиф после фатхи'}] },
+      { ar:'ٱلنَّاسِ', tr:'ан-наси', mean:'людей', rules:[{name:'Шадда نّ',type:'gunna',note:'Нун с шаддой — гуннэ'},{name:'Вакф',type:'waqf',note:'Конец суры — остановка'}] },
+    ]
+  },
+];
+
+const RULE_COLORS = {
+  izhar: '#4CAF8C', idgam: '#60a5fa', iklab: '#a78bfa',
+  ikhfa: '#fbbf24', madd: '#f97316', gunna: '#f472b6', waqf: '#38bdf8'
+};
+const RULE_LABELS = {
+  izhar:'Изхар', idgam:'Идгам', iklab:'Икляб',
+  ikhfa:'Ихфа', madd:'Мадд', gunna:'Гуннэ/Шадда', waqf:'Вакф/Сукун'
+};
+
+let currentAyahIdx = 0;
+let selectedWordIdx = -1;
+
+function initAyahAnalyzer() {
+  currentAyahIdx = 0;
+  selectedWordIdx = -1;
+  renderAyahAnalyzer();
+}
+
+function renderAyahAnalyzer() {
+  const c = document.getElementById('ayah-analyzer-container');
+  const ayah = AYAH_DATA[currentAyahIdx];
+
+  // Легенда
+  const legendHtml = Object.entries(RULE_LABELS).map(([k,v]) => `
+    <div class="legend-item">
+      <div class="legend-dot" style="background:${RULE_COLORS[k]}"></div>
+      <span>${v}</span>
+    </div>`).join('');
+
+  // Селектор аятов
+  const selHtml = AYAH_DATA.map((a,i) => `
+    <button class="ayah-sel-btn ${i===currentAyahIdx?'active':''}" onclick="selectAyah(${i})">${a.title}</button>
+  `).join('');
+
+  // Слова аята
+  const wordsHtml = ayah.words.map((w,i) => {
+    const mainRule = w.rules[0];
+    const ruleClass = mainRule ? `has-rule rule-${mainRule.type}` : '';
+    const label = mainRule ? RULE_LABELS[mainRule.type] : '·';
+    return `
+      <div class="ayah-word-wrap" onclick="selectWord(${i})">
+        <div class="ayah-word ${ruleClass} ${i===selectedWordIdx?'selected':''}" id="aw-${i}">${w.ar}</div>
+        <div class="ayah-word-label">${label}</div>
+      </div>`;
+  }).join('');
+
+  // Панель информации
+  let infoPanelHtml = `
+    <div style="color:var(--text2);font-size:0.9rem;text-align:center;padding:10px 0">
+      👆 Нажми на любое слово чтобы узнать правило таджвида
+    </div>`;
+
+  if (selectedWordIdx >= 0) {
+    const w = ayah.words[selectedWordIdx];
+    const badgesHtml = w.rules.length
+      ? w.rules.map(r => `
+          <span class="ayah-rule-badge" style="color:${RULE_COLORS[r.type]};border-color:${RULE_COLORS[r.type]};background:${RULE_COLORS[r.type]}18">
+            ${r.name}
+          </span>`).join('')
+      : `<span class="ayah-rule-badge" style="color:var(--text2);border-color:var(--border)">Особых правил нет</span>`;
+
+    const notesHtml = w.rules.map(r => `
+      <div style="font-size:0.82rem;color:var(--text2);margin-top:4px;padding-left:4px;border-left:3px solid ${RULE_COLORS[r.type]}22">
+        <strong style="color:${RULE_COLORS[r.type]}">${r.name}:</strong> ${r.note}
+      </div>`).join('');
+
+    const borderColor = w.rules[0] ? RULE_COLORS[w.rules[0].type] : 'var(--gold)';
+    infoPanelHtml = `
+      <div style="display:flex;align-items:flex-start;gap:16px;flex-wrap:wrap">
+        <div style="text-align:center;min-width:70px">
+          <div class="ayah-info-word">${w.ar}</div>
+          <button class="tp-listen-btn" style="margin-top:4px" onclick="speakArabic('${w.ar}')">🔊</button>
+        </div>
+        <div style="flex:1;min-width:180px">
+          <div class="ayah-info-translit">${w.tr} — «${w.mean}»</div>
+          <div class="ayah-rules-list" style="margin:8px 0">${badgesHtml}</div>
+          ${notesHtml}
+        </div>
+      </div>`;
+    // Обновляем border панели
+    setTimeout(() => {
+      const panel = document.getElementById('ayah-info-panel');
+      if (panel) panel.style.borderLeftColor = borderColor;
+    }, 0);
+  }
+
+  c.innerHTML = `
+    <div class="ayah-selector">${selHtml}</div>
+
+    <div class="ayah-legend">${legendHtml}</div>
+
+    <div class="ayah-display" id="ayah-display">
+      <div style="font-size:0.75rem;color:var(--text2);margin-bottom:12px;direction:ltr;text-align:right">
+        Сура ${ayah.surah} — нажми на слово
+        <button class="tp-listen-btn" style="margin-left:10px;display:inline-block;width:auto;padding:3px 12px"
+          onclick="speakArabic('${ayah.words.map(w=>w.ar).join(' ')}')">🔊 Весь аят</button>
+      </div>
+      <div style="display:flex;flex-wrap:wrap;justify-content:center;direction:rtl">${wordsHtml}</div>
+    </div>
+
+    <div class="ayah-info-panel" id="ayah-info-panel">${infoPanelHtml}</div>
+
+    <div style="display:flex;gap:8px;justify-content:center">
+      <button class="sound-btn" onclick="prevAyah()" ${currentAyahIdx===0?'disabled style="opacity:0.4"':''}>← Предыдущий</button>
+      <button class="sound-btn" onclick="nextAyah()" ${currentAyahIdx===AYAH_DATA.length-1?'disabled style="opacity:0.4"':''}>Следующий →</button>
+    </div>
+  `;
+}
+
+function selectWord(idx) {
+  selectedWordIdx = idx;
+  const ayah = AYAH_DATA[currentAyahIdx];
+  speakArabic(ayah.words[idx].ar);
+  renderAyahAnalyzer();
+}
+
+function selectAyah(idx) {
+  currentAyahIdx = idx;
+  selectedWordIdx = -1;
+  renderAyahAnalyzer();
+}
+function nextAyah() { if (currentAyahIdx < AYAH_DATA.length-1) { currentAyahIdx++; selectedWordIdx=-1; renderAyahAnalyzer(); } }
+function prevAyah() { if (currentAyahIdx > 0) { currentAyahIdx--; selectedWordIdx=-1; renderAyahAnalyzer(); } }
+
+// ===== TAJWID PRACTICE PAGE =====
+function showTajwidTab(tab) {
+  ['rules','ayah','quiz','similar','plan'].forEach(t => {
+    document.getElementById('ttab-content-' + t).style.display = t === tab ? '' : 'none';
+    document.getElementById('ttab-' + t).classList.toggle('active', t === tab);
+  });
+  if (tab === 'similar') buildSimilarLetters();
+  if (tab === 'plan') buildPlan();
+  if (tab === 'quiz') initTajwidQuiz();
+  if (tab === 'ayah') initAyahAnalyzer();
+}
+
+// ===== ТЕСТ ПРАВИЛ ТАДЖВИДА =====
+const TAJWID_QUESTIONS = [
+  // НУН САКИН
+  { arabic:'مِنْ عِلْمٍ', rule:'Изхар', hint:'نْ перед буквой ع (горло)', options:['Изхар','Идгам','Ихфа','Икляб'], explain:'نْ перед буквой горла ع → читается ясно (Изхар)', color:'#4CAF8C' },
+  { arabic:'مَنْ هَدَى', rule:'Изхар', hint:'نْ перед буквой ه', options:['Изхар','Ихфа','Идгам','Икляб'], explain:'نْ перед ه (горловой) → Изхар — ясное чтение', color:'#4CAF8C' },
+  { arabic:'مَنْ يَعْمَلْ', rule:'Идгам', hint:'نْ перед буквой ي', options:['Идгам','Изхар','Ихфа','Икляб'], explain:'نْ перед ي → нун сливается, читается «май-йа\'маль»', color:'#60a5fa' },
+  { arabic:'مِنْ رَبِّكَ', rule:'Идгам', hint:'نْ перед буквой ر', options:['Идгам','Изхар','Ихфа','Гуннэ'], explain:'نْ перед ر → слияние без гуннэ, нун исчезает', color:'#60a5fa' },
+  { arabic:'مِنْ بَعْدِ', rule:'Икляб', hint:'نْ перед буквой ب', options:['Икляб','Изхар','Идгам','Ихфа'], explain:'نْ перед ب → нун меняется на мим с гуннэ (Икляб)', color:'#a78bfa' },
+  { arabic:'سَمِيعٌ بَصِيرٌ', rule:'Икляб', hint:'Танвин перед буквой ب', options:['Икляб','Изхар','Ихфа','Идгам'], explain:'Танвин ـٌ перед ب → тоже Икляб, как нун сакин', color:'#a78bfa' },
+  { arabic:'مِنْ قَبْلِ', rule:'Ихфа', hint:'نْ перед буквой ق', options:['Ихфа','Изхар','Идгам','Икляб'], explain:'نْ перед ق → скрытое произношение с носовым звуком (Ихфа)', color:'#fbbf24' },
+  { arabic:'إِنْ كُنْتُمْ', rule:'Ихфа', hint:'نْ перед буквой ك', options:['Ихфа','Изхар','Идгам','Гуннэ'], explain:'نْ перед ك → Ихфа, нун скрывается, слышен носовой призвук', color:'#fbbf24' },
+  // МИМ САКИН
+  { arabic:'هُمْ بِهِ', rule:'Ихфа шафави', hint:'مْ перед буквой ب', options:['Ихфа шафави','Изхар шафави','Идгам мислейн','Икляб'], explain:'مْ перед ب → губы почти смыкаются, скрытый мим с гуннэ', color:'#fbbf24' },
+  { arabic:'لَهُمْ مَا', rule:'Идгам мислейн', hint:'مْ перед буквой م', options:['Идгам мислейн','Ихфа шафави','Изхар шафави','Изхар'], explain:'مْ перед م → два одинаковых, полное слияние с гуннэ', color:'#60a5fa' },
+  { arabic:'عَلَيْهِمْ غَيْرِ', rule:'Изхар шафави', hint:'مْ перед буквой غ', options:['Изхар шафави','Ихфа шафави','Идгам мислейн','Изхар'], explain:'مْ перед غ → губы чётко смыкаются и размыкаются, мим ясный', color:'#4CAF8C' },
+  // МАДД
+  { arabic:'قَالَ', rule:'Мадд Табии', hint:'Алиф после фатхи, нет хамзы рядом', options:['Мадд Табии','Мадд Мутасиль','Мадд Мунфасиль','Мадд Лязим'], explain:'Алиф после фатхи без хамзы → Мадд Табии, 2 харфа', color:'#C9A84C' },
+  { arabic:'جَاءَ', rule:'Мадд Мутасиль', hint:'Мадд + хамза в ОДНОМ слове', options:['Мадд Мутасиль','Мадд Табии','Мадд Мунфасиль','Гуннэ'], explain:'جَاءَ — мадд (ا) и хамза (ء) в одном слове → Мутасиль, 5 харфов', color:'#a78bfa' },
+  { arabic:'إِنَّا أَنْزَلْنَا', rule:'Мадд Мунфасиль', hint:'Мадд + хамза в РАЗНЫХ словах', options:['Мадд Мунфасиль','Мадд Мутасиль','Мадд Табии','Изхар'], explain:'إِنَّا — мадд, затем хамза أ в следующем слове → Мунфасиль, 5 харфов', color:'#4CAF8C' },
+  // ГУННЭ
+  { arabic:'إِنَّ اللَّهَ', rule:'Гуннэ', hint:'نّ — нун с шаддой', options:['Гуннэ','Изхар','Ихфа','Идгам'], explain:'نّ с шаддой → всегда Гуннэ, 2 харфа через нос', color:'#f472b6' },
+  { arabic:'ثُمَّ', rule:'Гуннэ', hint:'مّ — мим с шаддой', options:['Гуннэ','Изхар шафави','Ихфа шафави','Идгам'], explain:'مّ с шаддой → Гуннэ, губы сомкнуты, 2 харфа носового звука', color:'#f472b6' },
+];
+
+let tajwidQuizIdx = 0;
+let tajwidQuizScore = 0;
+let tajwidQuizAnswered = false;
+let tajwidQuizList = [];
+
+function initTajwidQuiz() {
+  tajwidQuizIdx = 0; tajwidQuizScore = 0; tajwidQuizAnswered = false;
+  tajwidQuizList = [...TAJWID_QUESTIONS].sort(() => Math.random() - 0.5).slice(0, 10);
+  renderTajwidQuiz();
+}
+
+function renderTajwidQuiz() {
+  const container = document.getElementById('tajwid-quiz-container');
+  if (tajwidQuizIdx >= tajwidQuizList.length) {
+    const pct = tajwidQuizScore * 10;
+    container.innerHTML = `
+      <div style="text-align:center;padding:40px 20px">
+        <div style="font-size:3.5rem;margin-bottom:12px">${pct>=80?'🌟':pct>=60?'👍':'📚'}</div>
+        <div style="font-size:1.8rem;font-weight:900;color:var(--gold);margin-bottom:8px">Тест завершён!</div>
+        <div style="font-size:1.1rem;color:var(--text2);margin-bottom:8px">Результат: <strong style="color:var(--gold)">${tajwidQuizScore} / ${tajwidQuizList.length}</strong></div>
+        <div style="font-size:2rem;font-weight:900;color:${pct>=70?'var(--green)':'var(--red)'};margin-bottom:24px">
+          ${pct>=80?'Машааллах!':pct>=60?'Хорошо, продолжай!':'Повтори правила и попробуй снова'}
+        </div>
+        <button class="start-btn" style="margin:0 auto" onclick="initTajwidQuiz()">🔄 Пройти снова</button>
+      </div>`;
+    if (pct >= 70) { showConfetti(); showToast('🌟 Машааллах!'); }
+    return;
+  }
+  const q = tajwidQuizList[tajwidQuizIdx];
+  tajwidQuizAnswered = false;
+  container.innerHTML = `
+    <div style="margin-bottom:12px;display:flex;justify-content:space-between;align-items:center">
+      <div style="font-size:0.85rem;color:var(--text2);font-weight:700">Вопрос ${tajwidQuizIdx+1} / ${tajwidQuizList.length}</div>
+      <div style="font-size:0.85rem;color:var(--gold);font-weight:800">Счёт: ${tajwidQuizScore}</div>
+    </div>
+    <div class="pbar-wrap" style="margin-bottom:20px"><div class="pbar-fill" style="width:${tajwidQuizIdx/tajwidQuizList.length*100}%"></div></div>
+
+    <div style="background:var(--card);border:2px solid var(--border);border-radius:18px;padding:24px;text-align:center;margin-bottom:20px">
+      <div style="font-size:0.8rem;color:var(--text2);margin-bottom:8px;font-weight:700">Какое правило применяется?</div>
+      <div style="font-family:'Amiri',serif;font-size:2.8rem;color:var(--gold);margin-bottom:12px;line-height:1.4">${q.arabic}</div>
+      <div style="font-size:0.8rem;color:var(--text2);font-style:italic">Подсказка: ${q.hint}</div>
+      <button class="sound-btn" style="margin:12px auto 0;display:block;font-size:0.8rem;padding:6px 16px" onclick="speakArabic('${q.arabic}')">🔊 Послушать</button>
+    </div>
+
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:16px" id="tq-options">
+      ${q.options.map(opt => `
+        <button onclick="answerTajwidQuiz(this,'${opt}','${q.rule}')"
+          style="background:var(--card);border:2px solid var(--border);border-radius:14px;padding:16px 10px;
+                 cursor:pointer;font-family:'Nunito',sans-serif;font-size:0.95rem;font-weight:800;
+                 color:var(--text);transition:all 0.2s;text-align:center"
+          onmouseover="this.style.borderColor='var(--gold)'" onmouseout="if(!this.dataset.answered)this.style.borderColor='rgba(201,168,76,0.2)'">
+          ${opt}
+        </button>`).join('')}
+    </div>
+    <div id="tq-explain" style="display:none;background:var(--card2);border-radius:12px;padding:14px 16px;
+         font-size:0.88rem;color:var(--text);line-height:1.6;margin-bottom:16px;border-left:4px solid ${q.color}"></div>
+  `;
+}
+
+function answerTajwidQuiz(btn, selected, correct) {
+  if (tajwidQuizAnswered) return;
+  tajwidQuizAnswered = true;
+  const q = tajwidQuizList[tajwidQuizIdx];
+  const isCorrect = selected === correct;
+
+  // Подсвечиваем все кнопки
+  document.querySelectorAll('#tq-options button').forEach(b => {
+    b.dataset.answered = '1';
+    const text = b.textContent.trim();
+    if (text === correct) { b.style.background = 'rgba(76,175,140,0.2)'; b.style.borderColor = 'var(--green)'; b.style.color = 'var(--green)'; }
+    else if (text === selected && !isCorrect) { b.style.background = 'rgba(224,92,92,0.2)'; b.style.borderColor = 'var(--red)'; b.style.color = 'var(--red)'; }
+    b.onmouseover = null; b.onmouseout = null;
+  });
+
+  // Объяснение
+  const explEl = document.getElementById('tq-explain');
+  explEl.style.display = 'block';
+  explEl.innerHTML = `${isCorrect ? '✅' : '❌'} <strong>${correct}</strong> — ${q.explain}`;
+
+  if (isCorrect) { tajwidQuizScore++; showToast('✅ Правильно! +1'); }
+  else showToast('❌ ' + correct);
+
+  setTimeout(() => { tajwidQuizIdx++; renderTajwidQuiz(); }, 2200);
+}
+
+function playAyah(n, el) {
+  if (el) { document.querySelectorAll('.tp-example.playing').forEach(e => e.classList.remove('playing')); el.classList.add('playing'); setTimeout(()=>el.classList.remove('playing'),2500); }
+  // Произносим арабский текст из элемента
+  const arabic = el ? el.querySelector('.tp-arabic')?.textContent : '';
+  if (arabic) speakArabic(arabic);
+}
+
+function playAyahNumber(n) {
+  const audio = new Audio(`https://cdn.islamic.network/quran/audio/128/ar.alafasy/${n}.mp3`);
+  audio.play().catch(()=>{});
+}
+
+// ===== ПОХОЖИЕ БУКВЫ =====
+const SIMILAR_GROUPS = [
+  {
+    title: 'Различаются только точками (самые частые ошибки!)',
+    letters: [
+      { l:'ب', name:'Ба', tr:'б', note:'1 точка снизу' },
+      { l:'ت', name:'Та', tr:'т', note:'2 точки сверху' },
+      { l:'ث', name:'Са', tr:'с', note:'3 точки сверху' },
+    ],
+    diff: 'Форма одинакова — смотри на точки! Снизу 1 = Ба, сверху 2 = Та, сверху 3 = Са'
+  },
+  {
+    title: 'Похожи по форме — путают часто',
+    letters: [
+      { l:'ج', name:'Джим', tr:'дж', note:'точка снизу' },
+      { l:'ح', name:'Ха', tr:'х', note:'без точек' },
+      { l:'خ', name:'Хаа', tr:'х (груб.)', note:'точка сверху' },
+    ],
+    diff: 'Одна форма. Джим — точка в середине снизу. Ха — чистая. Хаа — точка сверху'
+  },
+  {
+    title: 'Легко спутать начинающим',
+    letters: [
+      { l:'د', name:'Даль', tr:'д', note:'без точек, маленькая' },
+      { l:'ذ', name:'Заль', tr:'з', note:'с точкой сверху' },
+    ],
+    diff: 'Даль — без точки. Заль — с точкой сверху. Оба похожи на «д» в начале'
+  },
+  {
+    title: 'Почти одинаковые',
+    letters: [
+      { l:'ر', name:'Ра', tr:'р', note:'длиннее, ниже' },
+      { l:'ز', name:'Зайн', tr:'з', note:'с точкой сверху' },
+    ],
+    diff: 'Ра — без точки. Зайн — с точкой. Оба «хвостом вниз»'
+  },
+  {
+    title: 'Сестрёнки с точками',
+    letters: [
+      { l:'س', name:'Син', tr:'с', note:'три зубца, без точек' },
+      { l:'ش', name:'Шин', tr:'ш', note:'три зубца + 3 точки' },
+    ],
+    diff: 'Форма одинакова — три зубца. Шин отличается тремя точками сверху'
+  },
+  {
+    title: 'Эмфатические — ошибка меняет смысл!',
+    letters: [
+      { l:'س', name:'Син', tr:'с (мягкий)', note:'обычный' },
+      { l:'ص', name:'Сад', tr:'с (твёрд.)', note:'эмфатический' },
+      { l:'ز', name:'Зайн', tr:'з', note:'обычный' },
+      { l:'ظ', name:'Зха', tr:'з (твёрд.)', note:'эмфатический' },
+    ],
+    diff: 'Эмфатические произносятся с поднятым корнем языка, горло «открыто». Меняют соседние гласные на «о»/«у»'
+  },
+  {
+    title: 'Гортанные — новые звуки',
+    letters: [
+      { l:'ع', name:'Айн', tr:'ъ', note:'глубокое горло' },
+      { l:'غ', name:'Гайн', tr:'г (гортан.)', note:'как «р» по-французски' },
+      { l:'ه', name:'Ха', tr:'х (лёгкий)', note:'как выдох' },
+      { l:'ح', name:'Ха', tr:'х (сильный)', note:'горло сжато' },
+    ],
+    diff: 'Айн — уникальный звук, горло сжимается. Гайн — вибрация в горле. Ха — лёгкий выдох. Ха — сильное трение'
+  },
+];
+
+function buildSimilarLetters() {
+  const el = document.getElementById('similar-groups');
+  if (el.innerHTML) return; // уже построено
+  el.innerHTML = SIMILAR_GROUPS.map(g => `
+    <div class="similar-group">
+      <div class="similar-title">⚠️ ${g.title}</div>
+      <div class="similar-letters">
+        ${g.letters.map(l => `
+          <div class="similar-letter-btn" onclick="speakLetter('${l.l}')">
+            <div class="sl-arabic">${l.l}</div>
+            <div class="sl-name">${l.name}</div>
+            <div style="font-size:0.65rem;color:var(--text2);margin-top:2px">${l.note}</div>
+          </div>
+        `).join('')}
+      </div>
+      <div class="similar-diff">💡 ${g.diff}</div>
+    </div>
+  `).join('');
+}
+
+// ===== ПЛАН 30 ДНЕЙ =====
+const PLAN_DAYS = [
+  // Неделя 1 — Алфавит
+  { day:1,  topic:'Буквы 1-7\nا-ز',      week:1 },
+  { day:2,  topic:'Буквы 8-14\nح-ص',     week:1 },
+  { day:3,  topic:'Буквы 15-21\nض-ق',    week:1 },
+  { day:4,  topic:'Буквы 22-28\nك-ي',    week:1 },
+  { day:5,  topic:'Повтор\nвсех букв',    week:1 },
+  { day:6,  topic:'Огласовки\nФатха',     week:1 },
+  { day:7,  topic:'Огласовки\nКасра+Дамма', week:1 },
+  // Неделя 2 — Слоги и чтение
+  { day:8,  topic:'Слоги БА-ЙА',         week:2 },
+  { day:9,  topic:'Сукун\nбуква без гласной', week:2 },
+  { day:10, topic:'Танвин\nАН/ИН/УН',    week:2 },
+  { day:11, topic:'Шадда\nудвоение',      week:2 },
+  { day:12, topic:'Аль-Фатиха\nнаизусть', week:2 },
+  { day:13, topic:'Аль-Ихляс\nнаизусть', week:2 },
+  { day:14, topic:'Тест\nалфавит',        week:2 },
+  // Неделя 3 — Таджвид
+  { day:15, topic:'Нун Сакин\nИзхар',     week:3 },
+  { day:16, topic:'Нун Сакин\nИдгам',     week:3 },
+  { day:17, topic:'Нун Сакин\nИкляб+Ихфа', week:3 },
+  { day:18, topic:'Мим Сакин\nвсе 3',     week:3 },
+  { day:19, topic:'Мадд Табии\n2 харфа',  week:3 },
+  { day:20, topic:'Мадд\nМутасиль',       week:3 },
+  { day:21, topic:'Мадд\nМунфасиль',      week:3 },
+  // Неделя 4 — Практика
+  { day:22, topic:'Мадд Лязим\n6 харфов', week:4 },
+  { day:23, topic:'Гуннэ\nносовой звук',  week:4 },
+  { day:24, topic:'Тафхим\nи Таркик',     week:4 },
+  { day:25, topic:'Вакф\nзнаки паузы',    week:4 },
+  { day:26, topic:'Солнечные\nбуквы',     week:4 },
+  { day:27, topic:'Чтение\nАль-Фатихи',   week:4 },
+  { day:28, topic:'Чтение\nАль-Ихляс',    week:4 },
+  // Финал
+  { day:29, topic:'Финальный\nтест',      week:5 },
+  { day:30, topic:'🎉 Повтор\nвсего!',    week:5 },
+];
+
+const WEEK_NAMES = { 1:'Неделя 1 — Алфавит и огласовки', 2:'Неделя 2 — Слоги и первые суры', 3:'Неделя 3 — Правила таджвида', 4:'Неделя 4 — Практика и чтение', 5:'Финал' };
+
+function buildPlan() {
+  const el = document.getElementById('plan-grid');
+  if (el.innerHTML) return;
+  const doneDays = JSON.parse(localStorage.getItem('plan_done') || '[]');
+  const todayDay = parseInt(localStorage.getItem('plan_today') || '1');
+
+  const weeks = {};
+  PLAN_DAYS.forEach(d => { if (!weeks[d.week]) weeks[d.week] = []; weeks[d.week].push(d); });
+
+  el.innerHTML = Object.entries(weeks).map(([week, days]) => `
+    <div class="plan-week">
+      <div class="plan-week-title">${WEEK_NAMES[week]}</div>
+      <div class="plan-days">
+        ${days.map(d => `
+          <div class="plan-day ${doneDays.includes(d.day)?'done':''} ${d.day===todayDay?'today':''}"
+               onclick="togglePlanDay(${d.day}, this)">
+            <div class="plan-day-num">${d.day===todayDay?'📍':d.day}</div>
+            <div class="plan-day-topic">${doneDays.includes(d.day)?'✅':d.topic}</div>
+          </div>
+        `).join('')}
+      </div>
+    </div>
+  `).join('');
+}
+
+function togglePlanDay(day, el) {
+  const doneDays = JSON.parse(localStorage.getItem('plan_done') || '[]');
+  const idx = doneDays.indexOf(day);
+  if (idx >= 0) doneDays.splice(idx, 1);
+  else {
+    doneDays.push(day);
+    showToast(`✅ День ${day} выполнен!`);
+    // Продвигаем текущий день
+    const cur = parseInt(localStorage.getItem('plan_today') || '1');
+    if (day === cur && day < 30) localStorage.setItem('plan_today', day + 1);
+  }
+  localStorage.setItem('plan_done', JSON.stringify(doneDays));
+  // Перестраиваем
+  document.getElementById('plan-grid').innerHTML = '';
+  buildPlan();
 }
 
 // ===== INIT =====
